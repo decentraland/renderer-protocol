@@ -1,0 +1,23 @@
+{
+  "name": "@dcl/renderer-protocol",
+  "version": "0.0.0",
+  "description": "",
+  "main": "generated-ts/renderer_pb.js",
+  "typings": "generated-ts/renderer_pb.d.ts",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decentraland/renderer-protocol.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/decentraland/renderer-protocol/issues"
+  },
+  "homepage": "https://github.com/decentraland/renderer-protocol#readme",
+  "dependencies": {
+    "@types/google-protobuf": "^3.15.2",
+    "google-protobuf": "^3.17.0"
+  }
+}

@@ -1,0 +1,664 @@
+// This file contains messages reflecting the scene's entities protocols
+// it may change a few times. As long as we don't break compatibility
+// with the DecentralandInterface
+
+syntax = "proto3";
+
+import public "decentraland.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "DCL.Interface.Engine";
+package decentraland.renderer.engine;
+
+message PB_CreateEntity {
+  string id = 1;
+}
+
+message PB_RemoveEntity {
+  string id = 1;
+}
+
+message PB_SetEntityParent {
+  string entity_id = 1;
+  string parent_id = 2;
+}
+
+message PB_ComponentRemoved {
+  string entity_id = 1;
+  string name = 2;
+}
+
+message PB_Component {
+  oneof model {
+    PB_Transform transform = 1;
+    PB_UUIDCallback uuid_callback = 8;
+
+    PB_BoxShape box = 16;
+    PB_SphereShape sphere = 17;
+    PB_PlaneShape plane = 18;
+    PB_ConeShape cone = 19;
+    PB_CylinderShape cylinder = 20;
+
+    PB_TextShape text = 21;
+
+    PB_NFTShape nft = 22;
+
+    PB_UIContainerRect container_rect = 25;
+    PB_UIContainerStack container_stack = 26;
+
+    PB_UITextShape ui_text_shape = 27;
+    PB_UIInputText ui_input_text_shape = 28;
+    PB_UIImage ui_image_shape = 29;
+
+    PB_CircleShape circle = 31;
+    PB_Billboard billboard = 32;
+
+    PB_GLTFShape gltf = 54;
+    PB_OBJShape obj = 55;
+    PB_AvatarShape avatar = 56;
+
+    PB_BasicMaterial basic_material = 64;
+
+    PB_Texture texture = 68;
+    PB_AudioClip audio_clip = 200;
+    PB_AudioSource audio_source = 201;
+  }
+}
+
+message PB_TextShapeModel {
+  bool billboard = 1;
+  string value = 2;
+  decentraland.Color3 color = 3;
+  float opacity = 4;
+  float font_size = 5;
+  bool font_auto_size = 6;
+  string font_weight = 7;
+  string h_text_align = 8;
+  string v_text_align = 9;
+  float width = 10;
+  float height = 11;
+  bool adapt_width = 12;
+  bool adapt_height = 13;
+  float padding_top = 14;
+  float padding_right = 15;
+  float padding_bottom = 16;
+  float padding_left = 17;
+  float line_spacing = 18;
+  int32 line_count = 19;
+  bool text_wrapping = 20;
+  float shadow_blur = 21;
+  float shadow_offset_x = 22;
+  float shadow_offset_y = 23;
+  decentraland.Color3 shadow_color = 24;
+  float outline_width = 25;
+  decentraland.Color3 outline_color = 26;
+}
+
+message PB_Transform {
+  decentraland.Vector3 position = 1;
+  decentraland.Quaternion  rotation = 2;
+  decentraland.Vector3 scale = 3;
+}
+
+message PB_UpdateEntityComponent {
+  string entity_id = 1;
+  int32 class_id = 2;
+  string name = 3;
+  string data = 4;
+}
+
+message PB_ComponentCreated {
+  string id = 1;
+  int32 classid = 2;
+  string name = 3;
+}
+
+message PB_AttachEntityComponent {
+  string entity_id = 1;
+  string name = 2;
+  string id = 3;
+}
+
+message PB_ComponentDisposed {
+  string id = 1;
+}
+
+message PB_ComponentUpdated {
+  string id = 1;
+  string json = 2;
+}
+
+message PB_Ray {
+  decentraland.Vector3 origin = 1;
+  decentraland.Vector3 direction = 2;
+  float distance = 3;
+}
+
+message PB_RayQuery {
+  string query_id = 1;
+  string query_type = 2;
+  PB_Ray ray = 3;
+}
+
+message PB_Query {
+  string query_id = 1;
+  string payload = 2;
+}
+
+message SceneMessage {
+  string scene_id = 1;
+  string tag = 2;
+  oneof payload {
+    PB_CreateEntity create_entity = 3;
+    PB_RemoveEntity remove_entity = 4;
+    PB_SetEntityParent set_entity_parent = 5;
+    PB_UpdateEntityComponent update_entity_component = 6;
+    PB_AttachEntityComponent attach_entity_component  = 7;
+    PB_ComponentCreated component_created  = 8;
+    PB_ComponentDisposed component_disposed = 9;
+    PB_ComponentRemoved component_removed = 10;
+    PB_ComponentUpdated component_updated = 11;
+    PB_Query query = 12;
+    google.protobuf.Empty scene_started = 13;
+    PB_OpenExternalUrl open_external_url = 14;
+    PB_OpenNFTDialog open_nft_dialog = 15;
+  }
+}
+
+message PB_SetPosition {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message PB_Position {
+  float x = 1;
+  float y = 2;
+}
+
+message PB_LoadParcelScenes {
+  string id = 1;
+  PB_Position base_position = 2;
+  repeated PB_Position parcels = 3;
+  repeated decentraland.ContentMapping contents = 4;
+  string base_url = 5;
+  // ILand land = 6;
+}
+
+message PB_CreateUIScene {
+  string id = 1;
+  string base_url = 2;
+}
+
+message PB_UnloadScene {
+  string scene_id = 1;
+}
+
+message PB_AnimationState {
+  string clip = 1;
+  bool looping = 2;
+  float weight = 3;
+  bool playing = 4;
+  bool should_reset = 5;
+  float speed = 6;
+}
+
+message PB_Animator {
+  bool with_collisions = 1;
+  bool visible = 2;
+}
+
+message PB_AudioClip {
+  string url = 1;
+  bool loop = 2;
+  float volume = 3;
+}
+
+message PB_AudioSource {
+  PB_AudioClip audio_clip = 1;
+  string audio_clip_id = 2;
+  bool loop = 3;
+  float volume = 4;
+  bool playing = 5;
+  float pitch = 6;
+}
+
+message PB_AvatarShape {
+  string id = 1;
+  string base_url = 2;
+  string name = 3;
+  PB_Wearable body_shape = 4;
+  repeated PB_Wearable wearables = 5;
+  PB_Skin skin = 6;
+  PB_Hair hair = 7;
+  PB_Eyes eyes = 8;
+  PB_Face eyebrows = 9;
+  PB_Face mouth = 10;
+  bool use_dummy_model = 11;
+
+  string expression_trigger_id = 12;
+  uint64 expression_trigger_timestamp = 14;
+}
+
+message PB_Wearable {
+  string categody = 1;
+  string content_name = 2;
+  repeated decentraland.ContentMapping contents = 3;
+}
+
+message PB_Face {
+  string texture = 1;
+}
+
+message PB_Eyes {
+  string texture = 1;
+  string mask = 2;
+  decentraland.Color4 color = 3;
+}
+
+message PB_Hair {
+  decentraland.Color4 color = 1;
+}
+
+message PB_Skin {
+  decentraland.Color4 color = 1;
+}
+
+message PB_BasicMaterial {
+  PB_Texture texture = 1;
+  float alpha_test = 2;
+}
+
+message PB_Billboard {
+  bool x = 1;
+  bool y = 2;
+  bool z = 3;
+}
+
+message PB_BoxShape {
+  bool with_collisions = 1;
+  bool visible = 2;
+  repeated float uvs = 3;
+}
+
+message PB_CircleShape {
+  bool with_collisions = 1;
+  bool visible = 2;
+  float segments = 3;
+  float arc = 4;
+}
+
+message PB_ConeShape {
+  bool with_collisions = 1;
+  bool visible = 2;
+  float radius_top = 3;
+  float radius_bottom = 4;
+  float segments_height = 5;
+  float segments_radial = 6;
+  bool open_ended = 7;
+  float radius = 8;
+  float arc = 9;
+}
+
+message PB_CylinderShape {
+  bool with_collisions = 1;
+  bool visible = 2;
+  float radius_top = 3;
+  float radius_bottom = 4;
+  float segments_height = 5;
+  float segments_radial = 6;
+  bool open_ended = 7;
+  float radius = 8;
+  float arc = 9;
+}
+
+message PB_GlobalPointerDown {
+
+}
+
+message PB_GlobalPointerUp {
+
+}
+
+message PB_GLTFShape {
+  bool with_collisions = 1;
+  bool visible = 2;
+  string src = 3;
+}
+
+message PB_Material {
+  float alpha = 1;
+  decentraland.Color3 albedo_color = 2;
+  decentraland.Color3 emissive_color = 3;
+  float metallic = 4;
+  float roughness = 5;
+  decentraland.Color3 ambient_color = 6;
+  decentraland.Color3 reflection_color = 7;
+  decentraland.Color3 reflectivity_color = 8;
+  float direct_intensity = 9;
+  float micro_surface = 10;
+  float emissive_intensity = 11;
+  float environment_intensity = 12;
+  float specular_intensity = 13;
+  PB_Texture albedo_texture = 14;
+  PB_Texture alpha_texture = 15;
+  PB_Texture emissive_texture = 16;
+  PB_Texture bump_texture = 17;
+  PB_Texture refraction_texture = 18;
+  bool disable_lighting = 19;
+  float transparency_mode = 20;
+  bool has_alpha = 21;
+}
+
+message PB_NFTShape {
+  bool with_collisions = 1;
+  bool visible = 2;
+  string src = 3;
+  decentraland.Color3 color = 4;
+}
+
+message PB_OBJShape {
+  bool with_collisions = 1;
+  bool visible = 2;
+  string src = 3;
+}
+
+message PB_PlaneShape {
+  bool with_collisions = 1;
+  bool visible = 2;
+  float width = 3;
+  float height = 4;
+  repeated float uvs = 5;
+}
+
+message PB_Shape {
+  bool with_collisions = 1;
+  bool visible = 2;
+}
+
+message PB_SphereShape {
+  bool with_collisions = 1;
+  bool visible = 2;
+}
+
+message PB_TextShape {
+  bool with_collisions = 1;
+  bool visible = 2;
+  float outline_width = 3;
+  decentraland.Color3 outline_color = 4;
+  decentraland.Color3 color = 5;
+  float font_size = 6;
+  string font_weight = 7;
+  float opacity = 8;
+  string value = 9;
+  string line_spacing = 10;
+  float line_count = 11;
+  bool resizeTo_fit = 12;
+  bool text_wrapping = 13;
+  float shadow_blur = 14;
+  float shadow_offset_x = 15;
+  float shadow_offset_y = 16;
+  decentraland.Color3 shadow_color = 17;
+  float z_index = 18;
+  string h_text_align = 19;
+  string v_text_align = 20;
+  float width = 21;
+  float height = 22;
+  float padding_top = 23;
+  float padding_right = 24;
+  float padding_bottom = 25;
+  float padding_left = 26;
+  bool is_pickable = 27;
+  bool billboard = 28;
+}
+
+message PB_Texture {
+  string src = 1;
+  float sampling_mode = 2;
+  float wrap = 3;
+  bool has_alpha = 4;
+}
+
+message PB_UIButton {
+  string name = 1;
+  bool visible = 2;
+  float opacity = 3;
+  string h_align = 4;
+  string v_align = 5;
+  string width = 6;
+  string height = 7;
+  string positionX = 8;
+  string positionY = 9;
+  bool is_pointer_blocker = 10;
+  PB_UIShape parent = 11;
+  float font_size = 12;
+  string font_weight = 13;
+  float thickness = 14;
+  float corner_radius = 15;
+  decentraland.Color4 color = 16;
+  decentraland.Color4 background = 17;
+  float padding_top = 18;
+  float padding_right = 19;
+  float padding_bottom = 20;
+  float padding_left = 21;
+  float shadow_blur = 22;
+  float shadow_offset_x = 23;
+  float shadow_offset_y = 24;
+  decentraland.Color4 shadow_color = 25;
+  string text = 26;
+}
+
+message PB_UICanvas {
+  string name = 1;
+  bool visible = 2;
+  float opacity = 3;
+  string h_align = 4;
+  string v_align = 5;
+  string width = 6;
+  string height = 7;
+  string positionX = 8;
+  string positionY = 9;
+  bool is_pointer_blocker = 10;
+  PB_UIShape parent = 11;
+}
+
+message PB_UIContainerRect {
+  string name = 1;
+  bool visible = 2;
+  float opacity = 3;
+  string h_align = 4;
+  string v_align = 5;
+  string width = 6;
+  string height = 7;
+  string positionX = 8;
+  string positionY = 9;
+  bool is_pointer_blocker = 10;
+  PB_UIShape parent = 11;
+  bool adapt_width = 12;
+  bool adapt_height = 13;
+  float thickness = 14;
+  decentraland.Color4 color = 15;
+  bool alignment_uses_size = 16;
+}
+
+message PB_UIContainerStack {
+  string name = 1;
+  bool visible = 2;
+  float opacity = 3;
+  string h_align = 4;
+  string v_align = 5;
+  string width = 6;
+  string height = 7;
+  string positionX = 8;
+  string positionY = 9;
+  bool is_pointer_blocker = 10;
+  PB_UIShape parent = 11;
+  bool adapt_width = 12;
+  bool adapt_height = 13;
+  decentraland.Color4 color = 14;
+  PB_UIStackOrientation stack_orientation = 15;
+  float spacing = 16;
+}
+
+enum PB_UIStackOrientation {
+  VERTICAL = 0;
+  HORIZONTAL = 1;
+}
+
+message PB_UIImage {
+  string name = 1;
+  bool visible = 2;
+  float opacity = 3;
+  string h_align = 4;
+  string v_align = 5;
+  string width = 6;
+  string height = 7;
+  string positionX = 8;
+  string positionY = 9;
+  bool is_pointer_blocker = 10;
+  PB_UIShape parent = 11;
+  float source_left = 12;
+  float source_top = 13;
+  float source_width = 14;
+  float source_height = 15;
+  PB_Texture source = 16;
+  float padding_top = 17;
+  float padding_right = 18;
+  float padding_bottom = 19;
+  float padding_left = 20;
+  bool sizeIn_pixels = 21;
+  PB_UUIDCallback on_click = 22;
+}
+
+message PB_UUIDCallback {
+  string type = 1;
+  string uuid = 2;
+}
+
+message PB_UIInputText {
+  string name = 1;
+  bool visible = 2;
+  float opacity = 3;
+  string h_align = 4;
+  string v_align = 5;
+  string width = 6;
+  string height = 7;
+  string positionX = 8;
+  string positionY = 9;
+  bool is_pointer_blocker = 10;
+  PB_UIShape parent = 11;
+  float outline_width = 12;
+  decentraland.Color4 outline_color = 13;
+  decentraland.Color4 color = 14;
+  float thickness = 15;
+  float font_size = 16;
+  string font_weight = 17;
+  string value = 18;
+  decentraland.Color4 placeholder_color = 19;
+  string placeholder = 20;
+  float margin = 21;
+  float max_width = 22;
+  string h_text_align = 23;
+  string v_text_align = 24;
+  bool auto_stretch_width = 25;
+  decentraland.Color4 background = 26;
+  decentraland.Color4 focused_background = 27;
+  bool text_wrapping = 28;
+  float shadow_blur = 29;
+  float shadow_offset_x = 30;
+  float shadow_offset_y = 31;
+  decentraland.Color4 shadow_color = 32;
+  float padding_top = 33;
+  float padding_right = 34;
+  float padding_bottom = 35;
+  float padding_left = 36;
+  PB_UUIDCallback on_text_submit = 37;
+  PB_UUIDCallback on_changed = 38;
+  PB_UUIDCallback on_focus = 39;
+  PB_UUIDCallback on_blur = 40;
+}
+
+message PB_UIScrollRect {
+  string name = 1;
+  bool visible = 2;
+  float opacity = 3;
+  string h_align = 4;
+  string v_align = 5;
+  string width = 6;
+  string height = 7;
+  string positionX = 8;
+  string positionY = 9;
+  bool is_pointer_blocker = 10;
+  PB_UIShape parent = 11;
+  float valueX = 12;
+  float valueY = 13;
+  decentraland.Color4 border_color = 14;
+  decentraland.Color4 background_color = 15;
+  bool is_horizontal = 16;
+  bool is_vertical = 17;
+  float padding_top = 18;
+  float padding_right = 19;
+  float padding_bottom = 20;
+  float padding_left = 21;
+  PB_UUIDCallback on_changed = 22;
+}
+
+message PB_UIShape {
+  string name = 1;
+  bool visible = 2;
+  float opacity = 3;
+  string h_align = 4;
+  string v_align = 5;
+  string width = 6;
+  string height = 7;
+  string positionX = 8;
+  string positionY = 9;
+  bool is_pointer_blocker = 10;
+  PB_UIShape parent = 11;
+}
+
+message PB_UITextShape {
+  string name = 1;
+  bool visible = 2;
+  float opacity = 3;
+  string h_align = 4;
+  string v_align = 5;
+  string width = 6;
+  string height = 7;
+  string positionX = 8;
+  string positionY = 9;
+  bool is_pointer_blocker = 10;
+  PB_UIShape parent = 11;
+  float outline_width = 12;
+  decentraland.Color4 outline_color = 13;
+  decentraland.Color4 color = 14;
+  float font_size = 15;
+  bool font_auto_size = 16;
+  string font_weight = 17;
+  string value = 18;
+  float line_spacing = 19;
+  float line_count = 20;
+  bool adapt_width = 21;
+  bool adapt_height = 22;
+  bool text_wrapping = 23;
+  float shadow_blur = 24;
+  float shadow_offset_x = 25;
+  float shadow_offset_y = 26;
+  decentraland.Color4 shadow_color = 27;
+  string h_text_align = 28;
+  string v_text_align = 29;
+  float padding_top = 30;
+  float padding_right = 31;
+  float padding_bottom = 32;
+  float padding_left = 33;
+}
+
+message PB_OpenExternalUrl {
+  string url = 1;
+}
+
+message PB_OpenNFTDialog {
+  string asset_contract_address = 1;
+  string token_id = 2;
+  string comment = 3;
+}

@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - master
+  release:
+    types:
+      - created
+
+name: Deploy
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: make install_ubuntu build
+        run: make install_ubuntu build
+      - name: Publish
+        uses: menduz/oddish-action@master
+        with:
+          registry-url: "https://registry.npmjs.org"
+          access: public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
