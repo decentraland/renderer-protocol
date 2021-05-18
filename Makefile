@@ -2,6 +2,7 @@ PROTOC ?= protoc
 PROTO_FILES := $(wildcard src/*.proto)
 PBS_CS = $(PROTO_FILES:src/%.proto=generated-cs/%.cs)
 PBS_TS = $(PROTO_FILES:src/%.proto=generated-ts/%.d.ts)
+export PATH := node_modules/.bin:/usr/local/include/:$(PATH)
 
 VERSION = 3.17.0
 
@@ -28,18 +29,18 @@ install_ubuntu: install
 
 install:
 	npm install
-	npm i ts-protoc-gen -g
+	npm i -D ts-protoc-gen
 	npm i -S google-protobuf@$(VERSION)
 	npm i -S @types/google-protobuf@latest
 
 generated-cs/%.cs: src/%.proto
-	mkdir -p generated-cs
+	@mkdir -p generated-cs
 	${PROTOC} -I="$(PWD)/src" --csharp_out="$(PWD)/generated-cs" "$(PWD)/src/$*.proto"
 
 generated-ts/%.d.ts: src/%.proto
-	mkdir -p generated-ts
+	@mkdir -p generated-ts
 	${PROTOC} -I="$(PWD)/src" --js_out=import_style="commonjs_strict,binary:$(PWD)/generated-ts" --ts_out="$(PWD)/generated-ts" "$(PWD)/src/$*.proto"
-	echo 'exports.default = proto;' >> ./generated-ts/$*_pb.js
+	@echo 'exports.default = proto;' >> ./generated-ts/$*_pb.js
 
 build: ${PBS_CS} ${PBS_TS}
 	${PROTOC} --version

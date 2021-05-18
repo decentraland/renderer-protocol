@@ -94,9 +94,9 @@ message MessageFromRenderer {
   }
 
   message RequestWearables {
-    optional string ownedByUser = 1;
-    repeated string wearableIds = 2;
-    repeated string collectionIds = 3;
+    optional string owned_by_user = 1;
+    repeated string wearable_ids = 2;
+    repeated string collection_ids = 3;
     optional string context = 4;
   }
   message KillPortableExperience {
@@ -114,7 +114,7 @@ message MessageFromRenderer {
 
   message RequestGIFProcessor {
     string gif_id = 1;
-    string imageSource = 2;
+    string image_source = 2;
     bool isWebGL1 = 3;
   }
 
@@ -146,8 +146,8 @@ message MessageFromRenderer {
   }
 
   message SetVoiceChatSettings {
-    float voiceChatVolume = 1;
-    float voiceChatAllowCategory = 2;
+    float voice_chat_volume = 1;
+    float voice_chat_allow_category = 2;
   }
 
   message ToggleVoiceChatRecording {}
@@ -174,7 +174,7 @@ message MessageFromRenderer {
   message ReportPosition {
     decentraland.Vector3 position = 1;
     decentraland.Quaternion rotation = 2;
-    float playerHeight = 3;
+    float player_height = 3;
     bool immediate = 4;
   }
 
@@ -194,6 +194,7 @@ message MessageFromRenderer {
     string scene_id = 1;
     oneof scene_event {
       EntityOutOfBoundaries entities_out_of_boundaries = 2;
+      // TODO: add all the IEvents that we send to the scenes here
     }
 
     message EntityOutOfBoundaries {
@@ -207,19 +208,19 @@ message MessageFromRenderer {
 
   message PerformanceReport {
     string samples = 1;
-    bool fpsIsCapped = 2;
-    int32 hiccupsInThousandFrames = 3;
-    int32 hiccupsTime = 4;
-    int32 totalTime = 5;
+    bool fps_is_capped = 2;
+    int32 hiccups_in_thousand_frames = 3;
+    int32 hiccups_time = 4;
+    int32 total_time = 5;
   }
 
   message SystemInfoReport {
-    string graphicsDeviceName = 1;
-    string graphicsDeviceVersion = 2;
-    int32 graphicsMemorySize = 3;
-    string processorType = 4;
-    int32 processorCount = 5;
-    int32 systemMemorySize = 6;
+    string graphics_device_name = 1;
+    string graphics_device_version = 2;
+    int32 graphics_memory_size = 3;
+    string processor_type = 4;
+    int32 processor_count = 5;
+    int32 system_memory_size = 6;
   }
 
   message TrackAnalyticsEvent {
@@ -251,14 +252,14 @@ message MessageFromRenderer {
     bytes face128 = 3;
     bytes face256 = 4;
     bytes body = 5;
-    bool isSignUpFlow = 6;
+    bool is_sign_up_flow = 6;
   }
 
   message AvatarInfo {
-    string bodyShape = 1;
-    string skinColor = 2;
-    string hairColor = 3;
-    string eyeColor = 4;
+    string body_shape = 1;
+    string skin_color = 2;
+    string hair_color = 3;
+    string eye_color = 4;
     repeated string wearables = 5;
   }
 
@@ -405,15 +406,15 @@ message MessageToRenderer {
     repeated string replaces = 9;
     repeated BodyShapeRepresentation representations = 10;
 
-    string baseUrl = 11;
-    string baseUrlBundles = 12;
+    string base_url = 11;
+    string base_url_bundles = 12;
   }
 
   message BodyShapeRepresentation {
-    string mainFile = 1;
-    repeated string bodyShapes = 2;
-    repeated string overrideHides = 3;
-    repeated string overrideReplaces = 4;
+    string main_file = 1;
+    repeated string body_shapes = 2;
+    repeated string override_hides = 3;
+    repeated string override_replaces = 4;
     repeated decentraland.ContentMapping mappings = 5;
   }
 
@@ -427,9 +428,6 @@ message MessageToRenderer {
 
   message ClearWearableCatalog {}
 
-
-
-
   message ShowWelcomeNotification {}
   message ShowAvatarEditorInSignIn {}
   message ResetBuilderScene {}
@@ -440,10 +438,10 @@ message MessageToRenderer {
     message Notification {
       NotificationType type = 1;
       string message = 2;
-      string buttonMessage = 3;
+      string button_message = 3;
       int32 timer = 4; // in seconds
       string scene = 5;
-      string externalCallbackID = 6;
+      string external_callback_id = 6;
     }
     Notification notification = 1;
   }
@@ -451,50 +449,50 @@ message MessageToRenderer {
   
   }
   message TriggerSelfUserExpression {
-    string expressionId = 1;
+    string expression_id = 1;
   }
   message UpdateMinimapSceneInformation {
     message MinimapSceneInfo {
       string name = 1;
       string owner = 2;
       string description = 3;
-      optional string previewImageUrl = 4;
+      optional string preview_image_url = 4;
       int32 type = 5;
       repeated decentraland.ParcelPosition parcels = 6;
-      bool isPOI = 7;
+      bool is_poi = 7;
     }
     repeated MinimapSceneInfo info = 1;
   }
 
   message TutorialInitializationMessage {
-    bool fromDeepLink = 1;
-    bool enableNewTutorialCamera = 2;
+    bool from_deep_link = 1;
+    bool enable_new_tutorial_camera = 2;
   }
 
   message SetTutorialEnabled {
-    TutorialInitializationMessage tutorialConfig = 1;
+    TutorialInitializationMessage tutorial_config = 1;
   }
   message SetTutorialEnabledForUsersThatAlreadyDidTheTutorial {
-    TutorialInitializationMessage tutorialConfig = 1;
+    TutorialInitializationMessage tutorial_config = 1;
   }
 
   message AirDropInfo {
-    // export type AirdropInput = {
+    // export type Airdrop_input = {
     //    string id = 0;
     //    string title = 0;
     //    string subtitle = 0;
     //    repeated AirdropItem items = 0;
     // }
-    // export type AirdropInfo = {
+    // export type Airdrop_info = {
     //    string id = 0;
     // } & AirdropInput
     
-    // export type RarityEnum = 'common' | 'uncommon' | 'rare' | 'epic' | 'mythic' | 'legendary' | 'unique'
+    // export type Rarity_enum = 'common' | 'uncommon' | 'rare' | 'epic' | 'mythic' | 'legendary' | 'unique'
     
-    // export type AirdropItem = {
+    // export type Airdrop_item = {
     //    string name = 0;
     //    string subtitle? = 0;
-    //    string thumbnailURL = 0;
+    //    string thumbnail_url = 0;
     //    RarityEnum rarity = 0;
     //    'collectible' | 'erc20' type = 0;
     // }
@@ -508,22 +506,22 @@ message MessageToRenderer {
   }
 
   message InitializeFriends {
-    repeated string currentFriends = 1;
-    repeated string requestedTo = 2;
-    repeated string requestedFrom = 3;
+    repeated string current_friends = 1;
+    repeated string requested_to = 2;
+    repeated string requested_from = 3;
   }
   message UpdateFriendshipStatus {
-    string userId = 1;
+    string user_id = 1;
     FriendshipAction action = 2;
   }
   message UpdateUserPresence {
-    string userId = 1;
+    string user_id = 1;
     string realm = 2;
     decentraland.Vector2 position = 3;
     PresenceStatus presence = 4;
   }
   message FriendNotFound {
-    string queryString = 1;
+    string query_string = 1;
   }
   message RequestTeleport {
     string destination = 1;
@@ -535,9 +533,9 @@ message MessageToRenderer {
       string creator = 3;
       string description = 4;
       string thumbnail = 5;
-      decentraland.ParcelPosition baseCoord = 6;
+      decentraland.ParcelPosition base_coord = 6;
       repeated decentraland.ParcelPosition parcels = 7;
-      int32 usersTotalCount = 8;
+      int32 users_total_count = 8;
       repeated RealmInfo realms = 9;
     }
     repeated HotSceneInfo info = 1;
@@ -547,17 +545,17 @@ message MessageToRenderer {
      int32 width = 2;
      int32 height = 3;
      repeated int32 pointers = 4;
-     repeated int32 frameDelays = 5;
+     repeated int32 frame_delays = 5;
   }
   message SendGIFFetchFailure {
     string id = 1;
   }
   message ConfigureEmailPrompt {
-    int32 tutorialStep = 1;
+    int32 tutorial_step = 1;
   }
   message ConfigureTutorial {
-    int32 tutorialStep = 1;
-    TutorialInitializationMessage tutorialConfig = 2;
+    int32 tutorial_step = 1;
+    TutorialInitializationMessage tutorial_config = 2;
   }
   message UpdateBalanceOfMANA {
     string balance = 1;
@@ -566,39 +564,39 @@ message MessageToRenderer {
     bool talking = 2;
   }
   message SetUserTalking {
-    string userId = 1;
+    string user_id = 1;
     bool talking = 2;
   }
   message SetUsersMuted {
-    repeated string userId = 1;
+    repeated string user_id = 1;
     bool muted = 2;
   }
   message SetVoiceChatEnabledByScene {
     bool enabled = 1;
   }
   message SetKernelConfiguration {
-    int32 commRadius = 1;
-    bool voiceChatEnabled = 2;
-    string nameValidRegex = 3;
-    string nameValidCharacterRegex = 4;
-    bool enableBuilderInWorld = 5;
-    bool gifSupported = 6;
+    int32 comm_radius = 1;
+    bool voice_chat_enabled = 2;
+    string name_valid_regex = 3;
+    string name_valid_character_regex = 4;
+    bool enable_builder_in_world = 5;
+    bool gif_supported = 6;
     string tld = 7;
   }
   message RealmInfo {
     string layer = 1;
-    string serverName = 2;
+    string server_name = 2;
     string url = 3;
-    int32 usersCount = 4;
-    int32 usersMax = 5;
-    repeated decentraland.ParcelPosition userParcels = 6;
+    int32 users_count = 4;
+    int32 users_max = 5;
+    repeated decentraland.ParcelPosition user_parcels = 6;
   }
   message UpdateRealmsInfo {
     message CurrentRealmInfoForRenderer {
       string layer = 1;
-      string serverName = 2;
+      string server_name = 2;
       string domain = 3;
-      string contentServerUrl = 4;
+      string content_server_url = 4;
     }
     CurrentRealmInfoForRenderer current = 1;
     repeated RealmInfo realms = 2;
@@ -608,7 +606,7 @@ message MessageToRenderer {
     optional string error = 2;
   }
   message SetENSOwnerQueryResult {
-    string searchInput = 1;
+    string search_input = 1;
     bool success = 2;
     repeated ProfileForRenderer profiles = 3;
   }
@@ -619,7 +617,7 @@ message MessageToRenderer {
     float delta = 1;
   }
   message GetCameraTargetBuilder {
-    string futureId = 1;
+    string future_id = 1;
   }
   message SetPlayModeBuilder {
     string on = 1;
@@ -660,10 +658,10 @@ message MessageToRenderer {
   }
 
   message SetBuilderConfiguration {
-    float camera_zoomMin = 1;
-    float camera_zoomMax = 2;
-    float camera_zoomDefault = 3;
-    bool disableFloor = 4;
+    float camera_zoom_min = 1;
+    float camera_zoom_max = 2;
+    float camera_zoom_default = 3;
+    bool disable_floor = 4;
   }
 
   message SetCursorState {
@@ -693,7 +691,7 @@ message MessageToRenderer {
     string base_url = 3;
     repeated decentraland.ContentMapping mappings = 4;
     string icon = 5;
-    bool isPortableExperience = 6;
+    bool is_portable_experience = 6;
   }
 
   message DumpScenesLoadInfo {}
@@ -744,8 +742,8 @@ enum FriendshipAction {
 }
 
 message ChatMessage {
-  string messageId = 1;
-  ChatMessageType messageType = 2;
+  string message_id = 1;
+  ChatMessageType message_type = 2;
   string sender = 3;
   string recipient = 4;
   int32 timestamp = 5;

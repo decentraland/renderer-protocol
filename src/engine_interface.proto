@@ -5,7 +5,6 @@
 syntax = "proto3";
 
 import public "decentraland.proto";
-import "google/protobuf/empty.proto";
 
 option csharp_namespace = "DCL.Interface.Engine";
 package decentraland.renderer.engine;
@@ -159,11 +158,13 @@ message SceneMessage {
     PB_ComponentRemoved component_removed = 10;
     PB_ComponentUpdated component_updated = 11;
     PB_Query query = 12;
-    google.protobuf.Empty scene_started = 13;
+    PB_SceneStarted scene_started = 13;
     PB_OpenExternalUrl open_external_url = 14;
     PB_OpenNFTDialog open_nft_dialog = 15;
   }
 }
+
+message PB_SceneStarted {}
 
 message PB_SetPosition {
   float x = 1;
