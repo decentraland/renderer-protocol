@@ -22,5 +22,6 @@
   },
   "devDependencies": {
     "ts-protoc-gen": "^0.15.0"
-  }
+  },
+  "files": ["generated-ts", "generated-cs", "src"]
 }
