@@ -1,0 +1,45 @@
+﻿syntax = "proto3";
+
+import "common.proto";
+
+message Teleport {
+  message FromKernel {
+    oneof message {
+      RequestTeleport request_teleport = 1;
+      Teleport teleport = 2;
+    }
+
+    message Teleport
+    {
+      //{position: {x, y, z}, cameraTarget}:InstancedSpawnPoint,
+      //  rotateIfTargetIsNotSet: boolean = true
+    }
+
+    message RequestTeleport {
+      //teleportData: {}
+    }
+  }
+
+  message FromRenderer {
+    oneof message {
+      TeleportTo teleport_to = 3;
+      TeleportToCrowd teleport_to_crowd = 4;
+      TeleportToMagic teleport_to_magic = 5;
+      JumpIn jump_in = 6;
+    }
+
+    message TeleportTo {
+      int32 x = 1;
+      int32 y = 2;
+    }
+
+    message TeleportToMagic {}
+    message TeleportToCrowd {}
+
+    message JumpIn {
+      string realm = 1;
+      int32 parcel_x = 2;
+      int32 parcel_y = 3;
+    }
+  }
+}

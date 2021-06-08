@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+message Quests {
+  message FromKernel
+  {
+    oneof message {
+    }
+  }
+
+  message FromRenderer {}
+}

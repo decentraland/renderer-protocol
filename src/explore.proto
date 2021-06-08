@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+message Explore {
+  message FromKernel
+  {
+    oneof message {
+    }
+  }
+
+  message FromRenderer {}
+}

@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+message Misc {
+  message FromKernel
+  {
+    oneof message {
+    }
+  }
+
+  message FromRenderer {}
+}

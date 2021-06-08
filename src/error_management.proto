@@ -1,0 +1,23 @@
+﻿syntax = "proto3";
+
+message ErrorManagement {
+  message FromKernel {
+    message CrashPayloadRequest {}
+  }
+
+  message FromRenderer {
+    oneof message {
+      ReportAvatarFatalError report_avatar_fatal_error = 1;
+      SystemInfoReport system_info_report = 2;
+      CrashPayloadResponse crash_payload_response = 3;
+    }
+
+    message ReportAvatarFatalError {}
+    message SystemInfoReport {
+      //(data: SystemInfoPayload)
+    }
+    message CrashPayloadResponse {
+      string payload = 1;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+﻿syntax = "proto3";
+
+message Catalog {
+  message FromKernel
+  {
+    message AddUserProfileToCatalog {
+      //(peerProfile: ProfileForRenderer); 
+    }
+    message AddWearablesToCatalog {
+      //(wearables: WearableV2[], context?: string); 
+    }
+    message WearablesRequestFailed {
+      //(error: string, context: string | undefined); 
+    }
+    message RemoveWearablesFromCatalog {
+      // (wearableIds: string[]); 
+    }
+    message ClearWearableCatalog {}
+  }
+
+  message FromRenderer
+  {
+    message RequestWearables {
+      //        (data: {
+      //      filters:
+      //      {
+      //      ownedByUser:
+      //          string | null
+      //          wearableIds ?: string[] | null
+      //          collectionIds ?: string[] | null
+      //          },
+      //          context ?: string
+      //          });
+    }
+  }
+}

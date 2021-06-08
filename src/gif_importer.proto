@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+message GifImporter {
+  message FromKernel
+  {
+    oneof message {
+    }
+  }
+
+  message FromRenderer {}
+}

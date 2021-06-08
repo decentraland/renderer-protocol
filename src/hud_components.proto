@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+message HUDComponents {
+  message FromKernel
+  {
+    oneof message {
+    }
+  }
+
+  message FromRenderer {}
+}

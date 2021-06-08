@@ -1,0 +1,105 @@
+﻿syntax = "proto3";
+
+import "common.proto";
+import "scene.proto";
+import "engine_interface.proto";
+
+import "airdrop.proto";
+import "analytics.proto";
+import "browser_state.proto";
+import "chat_and_friends.proto";
+import "debug.proto";
+import "emotes.proto";
+import "error_management.proto";
+import "explore.proto";
+import "gif_importer.proto";
+import "hud.proto";
+import "hud_components.proto";
+import "misc.proto";
+import "navigation_map.proto";
+import "notifications.proto";
+import "profile.proto";
+import "quests.proto";
+import "render_style.proto";
+import "renderer_activation.proto";
+import "reporting.proto";
+import "scene_lifecycle.proto";
+import "sdk_components.proto";
+import "session.proto";
+import "settings.proto";
+import "teleport.proto";
+import "tutorial.proto";
+import "users_search.proto";
+import "voice_chat.proto";
+
+package decentraland.renderer;
+
+option csharp_namespace = "DCL.Interface";
+
+message FromRenderer {
+  oneof message {
+    AirDrop.FromRenderer airdrop = 1;
+    Analytics.FromRenderer analytics = 2;
+    BrowserState.FromRenderer browser_state = 3;
+    Builder.FromRenderer builder = 4;
+    Catalog.FromRenderer catalog = 5;
+    ChatAndFriends.FromRenderer chat_and_friends = 6;
+    Debug.FromRenderer debug = 7;
+    Emotes.FromRenderer emotes = 8;
+    ErrorManagement.FromRenderer error_management = 9;
+    Explore.FromRenderer explore = 10;
+    GifImporter.FromRenderer gif_importer = 11;
+    HUD.FromRenderer hud = 12;
+    HUDComponents.FromRenderer hud_components = 13;
+    Misc.FromRenderer misc = 14;
+    NavigationMap.FromRenderer navigation_map = 15;
+    Notifications.FromRenderer notifications = 16;
+    Profile.FromRenderer profile = 17;
+    Quests.FromRenderer quests = 18;
+    RenderStyle.FromRenderer render_style = 19;
+    RendererActivation.FromRenderer renderer_activation = 20;
+    Reporting.FromRenderer reporting = 21;
+    SceneLifecycle.FromRenderer scene_lifecycle = 22;
+    SDKComponents.FromRenderer sdk_components = 23;
+    Session.FromRenderer session = 24;
+    Settings.FromRenderer settings = 25;
+    Teleport.FromRenderer teleport = 26;
+    Tutorial.FromRenderer tutorial = 27;
+    UsersSearch.FromRenderer users_search = 28;
+    VoiceChat.FromRenderer voice_chat = 29;
+  }
+}
+
+message FromKernel {
+  oneof message {
+    AirDrop.FromKernel airdrop = 1;
+    Analytics.FromKernel analytics = 2;
+    BrowserState.FromKernel browser_state = 3;
+    Builder.FromKernel builder = 4;
+    Catalog.FromKernel catalog = 5;
+    ChatAndFriends.FromKernel chat_and_friends = 6;
+    Debug.FromKernel debug = 7;
+    Emotes.FromKernel emotes = 8;
+    ErrorManagement.FromKernel error_management = 9;
+    Explore.FromKernel explore = 10;
+    GifImporter.FromKernel gif_importer = 11;
+    HUD.FromKernel hud = 12;
+    HUDComponents.FromKernel hud_components = 13;
+    Misc.FromKernel misc = 14;
+    NavigationMap.FromKernel navigation_map = 15;
+    Notifications.FromKernel notifications = 16;
+    Profile.FromKernel profile = 17;
+    Quests.FromKernel quests = 18;
+    RenderStyle.FromKernel render_style = 19;
+    RendererActivation.FromKernel renderer_activation = 20;
+    Reporting.FromKernel reporting = 21;
+    SceneLifecycle.FromKernel scene_lifecycle = 22;
+    SDKComponents.FromKernel sdk_components = 23;
+    Session.FromKernel session = 24;
+    Settings.FromKernel settings = 25;
+    Teleport.FromKernel teleport = 26;
+    Tutorial.FromKernel tutorial = 27;
+    UsersSearch.FromKernel users_search = 28;
+    VoiceChat.FromKernel voice_chat = 29;
+  }
+}

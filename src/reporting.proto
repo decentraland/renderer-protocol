@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+message Reporting {
+  message FromKernel
+  {
+    oneof message {
+    }
+  }
+
+  message FromRenderer {}
+}
