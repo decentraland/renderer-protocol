@@ -3,9 +3,15 @@
 message Tutorial {
   message FromKernel
   {
-    oneof message {
-    }
+    message SetTutorialEnabled {} //(tutorialConfig: TutorialController.TutorialInitializationMessage);
+    message SetTutorialEnabledForUsersThatAlreadyDidTheTutorial {} //(tutorialConfig: TutorialController.TutorialInitializationMessage)
+
+    message ConfigureTutorial {} //(tutorialStep: number, tutorialConfig: TutorialController.TutorialInitializationMessage)
+
   }
 
-  message FromRenderer {}
+  message FromRenderer
+  {
+    message SaveUserTutorialStep {} //(data: { tutorialStep: number });
+  }
 }

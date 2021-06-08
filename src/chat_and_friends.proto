@@ -3,9 +3,16 @@
 message ChatAndFriends {
   message FromKernel
   {
-    oneof message {
-    }
+    message AddMessageToChatWindow {}//(message: ChatMessage)
+    message InitializeFriends {} //(initializationMessage: FriendsInitializationMessage)
+    message UpdateFriendshipStatus {} //(updateMessage: FriendshipUpdateStatusMessage)
+    message UpdateUserPresence {} //(status: UpdateUserStatusMessage)
+    message FriendNotFound {} //(queryString: string)
   }
 
-  message FromRenderer {}
+  message FromRenderer
+  {
+    message SendChatMessage {} //(data: { message: ChatMessage })
+    message UpdateFriendshipStatus {} //(message: FriendshipUpdateStatusMessage);
+  }
 }

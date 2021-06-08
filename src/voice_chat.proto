@@ -3,9 +3,17 @@
 message VoiceChat {
   message FromKernel
   {
-    oneof message {
-    }
+    message SetPlayerTalking {}//(talking: boolean)
+    message SetUserTalking {} //(userId: string, talking: boolean);
+    message SetUsersMuted {} //(usersId: string[], muted: boolean);
+    message SetVoiceChatEnabledByScene {} //(enabled: boolean);
   }
 
-  message FromRenderer {}
+  message FromRenderer
+  {
+    message SetVoiceChatRecording {} //(recordingMessage: { recording: boolean });
+    message ToggleVoiceChatRecording {}
+    message ApplySettings {} //(settingsMessage: { voiceChatVolume: number; voiceChatAllowCategory: number })
+    message SetMuteUsers {} //(data: { usersId: string[]; mute: boolean })
+  }
 }

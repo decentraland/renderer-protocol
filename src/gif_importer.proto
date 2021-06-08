@@ -3,9 +3,13 @@
 message GifImporter {
   message FromKernel
   {
-    oneof message {
-    }
+    message SendGIFPointers {}//(id: string, width: number, height: number, pointers: number[], frameDelays: number[]) {
+    message SendGIFFetchFailure {} //(id: string);
   }
 
-  message FromRenderer {}
+  message FromRenderer
+  {
+    message RequestGIFProcessor {} //(data: { imageSource: string; id: string; isWebGL1: boolean });
+    message DeleteGIF {} //(data: { value: string })
+  }
 }

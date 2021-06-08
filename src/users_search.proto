@@ -3,9 +3,13 @@
 message UsersSearch {
   message FromKernel
   {
-    oneof message {
-    }
+    // ???
+    message SetENSOwnerQueryResult {} //(searchInput: string, profiles: Profile[] | undefined);
   }
 
-  message FromRenderer {}
+  message FromRenderer
+  {
+    // Profile??
+    message SearchENSOwner {} //(data: { name: string; maxResults?: number });
+  }
 }

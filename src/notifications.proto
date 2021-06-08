@@ -1,11 +1,9 @@
 ﻿syntax = "proto3";
 
 message Notifications {
-  message FromKernel
-  {
-    oneof message {
-    }
+  message FromKernel {
+    message ShowNotification {} //(notification: Notification);
+    message ShowWelcomeNotification {}
   }
-
   message FromRenderer {}
 }

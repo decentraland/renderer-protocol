@@ -3,9 +3,14 @@
 message Misc {
   message FromKernel
   {
-    oneof message {
-    }
+    // Generic
+    message SendGenericMessage {} //(object: string, method: string, payload: string)
+    // General
+    message SetKernelConfiguration {} //(config: KernelConfigForRenderer);
   }
 
-  message FromRenderer {}
+  message FromRenderer
+  {
+    message SendScreenshot {} //(data: { id: string; encodedTexture: string });
+  }
 }

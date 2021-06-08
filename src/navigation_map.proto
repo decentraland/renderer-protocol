@@ -3,9 +3,11 @@
 message NavigationMap {
   message FromKernel
   {
-    oneof message {
-    }
+    message UpdateMinimapSceneInformation {} //(info: MinimapSceneInfo[]);
   }
 
-  message FromRenderer {}
-}
+  message FromRenderer
+  {
+    // Navmap info management
+    message RequestScenesInfoInArea {} //(data: { parcel: { x: number; y: number }; scenesAround: number });
+  }}

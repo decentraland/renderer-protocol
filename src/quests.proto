@@ -3,8 +3,8 @@
 message Quests {
   message FromKernel
   {
-    oneof message {
-    }
+    message InitQuestsInfo {} //(rendererQuests: QuestForRenderer[]);
+    message UpdateQuestProgress {} //(rendererQuest: QuestForRenderer);
   }
 
   message FromRenderer {}

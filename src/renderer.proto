@@ -22,21 +22,11 @@ message MessageFromRenderer {
     TrackAnalyticsEvent track_analytics_event = 10;
     TriggerExpression trigger_expression = 11;
     MotdConfirmClicked message_of_the_day_confirm_clicked = 12;
-    // FKA GoTo
-
-    //  Condense all the teleport messages into one. TODO = 0;
-    TeleportTo teleport_to = 13;
-    TeleportToMagic teleport_to_magic = 14;
-    TeleportToCrowd teleport_to_crowd = 15;
-    // JumpIn jump_in = 38;
 
     LogOut logout = 16;
     RedirectToSignUp redirect_to_signup = 17;
 
     SaveAvatar save_avatar = 18;
-
-    RequestOwnProfileUpdate request_profile_update = 19;
-    SaveUserUnverifiedName save_user_unverified_name = 20;
     CloseUserAvatar close_user_avatar = 21;
     SaveUserTutorialStep save_tutorial_step = 22;
 
@@ -68,8 +58,6 @@ message MessageFromRenderer {
 
     UpdateFriendshipStatus update_friendship_status = 36;
     FindEnsOwner find_ens_owner = 37;
-
-    JumpIn jump_in = 38;
 
     ScenesLoadingFeedback scenes_loading_feedback = 39;
 
@@ -293,41 +281,20 @@ message MessageFromRenderer {
 
 message MessageToRenderer {
   oneof message {
-    //Browser state
-    ReportFocusOn report_focus_on = 18;
-    ReportFocusOff report_focus_off = 19;
-    SetCursorState set_cursor_state = 20;
-    UnlockCursor unlock_cursor = 0;
 
-    //Settings
-    SetScenesLoadRadius
+    decentraland.renderer.engine.SceneMessage send_scene_message = 1;
 
-
-
-
-        decentraland.renderer.engine.SceneMessage send_scene_message = 1;
-    SetDebug set_debug = 2;
-    LoadProfile load_profile = 3;
-    SetRenderProfile set_render_profile = 4;
     DumpScenesLoadInfo dump_scenes_load_info = 5;
     DumpRendererLockersInfo dump_render_lockers_info = 6;
     CreateGlobalScene create_global_scene = 7;
     LoadParcelScenes load_parcel_scene = 8;
     UpdateParcelScenes update_parcel_scenes = 9;
     UnloadScene unload_scene = 10;
-    SetSceneDebugPanel set_debug_panel = 11;
-    ShowFPSPanel show_fps_panel = 12;
-    HideFPSPanel hide_fps_panel = 13;
-    SetEngineDebugPanel set_engine_debug_panel = 14;
-    SetDisableAssetBundles set_disable_asset_bundles = 15;
-    ActivateRendering activate_rendering = 16;
-    DeactivateRendering deactivate_rendering = 17;
+
     SetBuilderReady set_builder_ready = 21;
-    AddUserProfileToCatalog add_user_profile_to_catalog = 22;
-    AddWearablesToCatalog add_wearables_to_catalog = 23;
+
     WearablesRequestFailed wearable_request_failed = 24;
-    RemoveWearablesFromCatalog remove_wearables_from_catalog = 25;
-    ClearWearableCatalog clear_wearable_catalog = 26 ;
+
     ShowNotification show_notification = 27 ;
     ConfigureHUDElement configure_hud_element = 28 ;
     ShowWelcomeNotification show_welcome_notification = 29 ;
@@ -335,7 +302,6 @@ message MessageToRenderer {
     UpdateMinimapSceneInformation update_minimap_scene_information = 31 ;
     SetTutorialEnabled set_tutorial_enabled = 32 ;
     SetTutorialEnabledForUsersThatAlreadyDidTheTutorial set_tutorial_enabled_for_users_that_already_did_the_tutorial = 33 ;
-    TriggerAirdropDisplay trigger_airdrop_display = 34 ;
     AddMessageToChatWindow add_message_to_chat_window = 35 ;
     InitializeFriends initialize_friends = 36 ;
     UpdateFriendshipStatus update_friendship_status = 37 ;
@@ -473,31 +439,6 @@ message MessageToRenderer {
     TutorialInitializationMessage tutorial_config = 1;
   }
 
-  message AirDropInfo {
-    // export type Airdrop_input = {
-    //    string id = 0;
-    //    string title = 0;
-    //    string subtitle = 0;
-    //    repeated AirdropItem items = 0;
-    // }
-    // export type Airdrop_info = {
-    //    string id = 0;
-    // } & AirdropInput
-
-    // export type Rarity_enum = 'common' | 'uncommon' | 'rare' | 'epic' | 'mythic' | 'legendary' | 'unique'
-
-    // export type Airdrop_item = {
-    //    string name = 0;
-    //    string subtitle? = 0;
-    //    string thumbnail_url = 0;
-    //    RarityEnum rarity = 0;
-    //    'collectible' | 'erc20' type = 0;
-    // }
-  }
-
-  message TriggerAirdropDisplay {
-    AirDropInfo data = 1;
-  }
   message AddMessageToChatWindow {
     ChatMessage message = 1;
   }

@@ -1,0 +1,10 @@
+﻿syntax = "proto3";
+
+message Session {
+  message FromKernel {}
+
+  message FromRenderer {
+    message LogOut {};
+    message RedirectToSignUp {};
+  }
+}

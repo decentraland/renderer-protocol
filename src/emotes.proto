@@ -3,9 +3,11 @@
 message Emotes {
   message FromKernel
   {
-    oneof message {
-    }
+    message TriggerSelfUserExpression {} //(string expressionId);
   }
 
-  message FromRenderer {}
+  message FromRenderer
+  {
+    message TriggerExpression {} //(data: { id: string; timestamp: number });
+  }
 }

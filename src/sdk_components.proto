@@ -3,9 +3,9 @@
 message SDKComponents {
   message FromKernel
   {
-    oneof message {
-    }
   }
 
-  message FromRenderer {}
+  message FromRenderer {
+    message SetAudioStream {} //(data: { url: string; play: boolean; volume: number });
+  }
 }

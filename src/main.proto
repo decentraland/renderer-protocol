@@ -1,16 +1,12 @@
 ﻿syntax = "proto3";
 
-import "common.proto";
-import "scene.proto";
-import "engine_interface.proto";
-
 import "airdrop.proto";
 import "analytics.proto";
 import "browser_state.proto";
 import "chat_and_friends.proto";
 import "debug.proto";
 import "emotes.proto";
-import "error_management.proto";
+import "error_handling.proto";
 import "explore.proto";
 import "gif_importer.proto";
 import "hud.proto";
@@ -31,6 +27,8 @@ import "teleport.proto";
 import "tutorial.proto";
 import "users_search.proto";
 import "voice_chat.proto";
+import "builder.proto";
+import "catalog.proto";
 
 package decentraland.renderer;
 
@@ -46,7 +44,7 @@ message FromRenderer {
     ChatAndFriends.FromRenderer chat_and_friends = 6;
     Debug.FromRenderer debug = 7;
     Emotes.FromRenderer emotes = 8;
-    ErrorManagement.FromRenderer error_management = 9;
+    ErrorHandling.FromRenderer error_handling = 9;
     Explore.FromRenderer explore = 10;
     GifImporter.FromRenderer gif_importer = 11;
     HUD.FromRenderer hud = 12;
@@ -80,7 +78,7 @@ message FromKernel {
     ChatAndFriends.FromKernel chat_and_friends = 6;
     Debug.FromKernel debug = 7;
     Emotes.FromKernel emotes = 8;
-    ErrorManagement.FromKernel error_management = 9;
+    ErrorHandling.FromKernel error_handling = 9;
     Explore.FromKernel explore = 10;
     GifImporter.FromKernel gif_importer = 11;
     HUD.FromKernel hud = 12;

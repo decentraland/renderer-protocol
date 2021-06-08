@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message ErrorManagement {
+message ErrorHandling {
   message FromKernel {
     message CrashPayloadRequest {}
   }

@@ -3,8 +3,13 @@
 message HUD {
   message FromKernel
   {
-    oneof message {
-    }
+    message ConfigureHUDElement {}
+    /*
+      (
+      hudElementId: HUDController.HUDElementID,
+      configuration: HUDConfiguration,
+      extraPayload: any | null = null
+    );*/
   }
 
   message FromRenderer {}

@@ -3,9 +3,12 @@
 message Explore {
   message FromKernel
   {
-    oneof message {
-    }
+    message UpdateRealmsInfo {} //(realmsInfo: Partial<RealmsInfoForRenderer>);
+    message UpdateHotScenesList {} //(info: HotSceneInfo[]);
   }
 
-  message FromRenderer {}
+  message FromRenderer
+  {
+    message FetchHotScenes {}
+  }
 }

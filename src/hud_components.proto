@@ -1,11 +1,27 @@
 ﻿syntax = "proto3";
 
 message HUDComponents {
-  message FromKernel
-  {
-    oneof message {
-    }
+  message FromKernel {
+    message ConfigureEmailPrompt {} //(tutorialStep: number);
+    message UpdateBalanceOfMANA {} //(balance: string)
+    message ShowAvatarEditorInSignIn {}
   }
 
-  message FromRenderer {}
+  message FromRenderer {
+    message TermsOfServiceResponse {} //(sceneId: string, accepted: boolean, dontShowAgain: boolean);
+    message MotdConfirmClicked {}
+    message SaveUserAvatar {}
+    /*
+      (changes: {
+    face: string
+        face128: string
+        face256: string
+        body: string
+        avatar: Avatar
+        isSignUpFlow?: boolean
+        });
+*/
+    message CloseUserAvatar {} //(isSignUpFlow = false);
+    message FetchBalanceOfMANA {}
+  }
 }
