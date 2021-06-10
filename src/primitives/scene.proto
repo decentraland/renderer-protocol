@@ -3,7 +3,7 @@
 
 syntax = "proto3";
 
-package decentraland.scene;
+package scene;
 
 message ContentMapping {
   string file = 1;

@@ -5,14 +5,13 @@ message HUD {
     oneof message {
       ConfigureHUDElement configure_hud_element = 1;
     }
-    
-    message ConfigureHUDElement {}
-    /*
-      (
-      hudElementId: HUDController.HUDElementID,
-      configuration: HUDConfiguration,
-      extraPayload: any | null = null
-    );*/
+
+    message ConfigureHUDElement {
+      int32 hud_element_id = 1;
+      bool active = 2;
+      bool visible = 3;
+      optional string extra_payload = 4;
+    }
   }
 
   message FromRenderer {}

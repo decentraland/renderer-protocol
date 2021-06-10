@@ -1,19 +1,28 @@
 ﻿syntax = "proto3";
 
+import "primitives/profile.proto";
+
 message UsersSearch {
   message FromKernel {
     oneof message {
       SetENSOwnerQueryResult set_ens_owner_query_result = 1;
     }
-    // ???
-    message SetENSOwnerQueryResult {} //(searchInput: string, profiles: Profile[] | undefined);
+
+    message SetENSOwnerQueryResult {
+      string search_input = 1;
+      repeated profile.ProfileForRenderer profiles = 2;
+    }
   }
 
   message FromRenderer {
     oneof message {
       SearchENSOwner search_ens_owner = 1;
     }
-    // Profile??
-    message SearchENSOwner {} //(data: { name: string; maxResults?: number });
+
+    message SearchENSOwner {
+      string name = 1;
+      optional float max_results = 2;
+    }
   }
 }
+

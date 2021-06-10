@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-import "common.proto";
+import "primitives/common.proto";
 
 message Teleport {
   message FromKernel {
@@ -9,14 +9,14 @@ message Teleport {
       Teleport teleport = 2;
     }
 
-    message Teleport
-    {
-      //{position: {x, y, z}, cameraTarget}:InstancedSpawnPoint,
-      //  rotateIfTargetIsNotSet: boolean = true
+    message Teleport {
+      common.Vector3 position = 1;
+      common.Vector3 camera_target = 2;
+      bool rotateIfTargetIsNotSet = 3;
     }
 
     message RequestTeleport {
-      //teleportData: {}
+      string destination = 1;
     }
   }
 

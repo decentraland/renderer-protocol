@@ -1,13 +1,20 @@
 ﻿syntax = "proto3";
 
+import "primitives/quests.proto";
+
 message Quests {
   message FromKernel {
     oneof message {
       InitQuestsInfo init_quests_info = 1;
       UpdateQuestProgress update_quest_progress = 2;
     }
-    message InitQuestsInfo {} //(rendererQuests: QuestForRenderer[]);
-    message UpdateQuestProgress {} //(rendererQuest: QuestForRenderer);
+    message InitQuestsInfo {
+      repeated quests.QuestForRenderer renderer_quests = 1;
+    }
+
+    message UpdateQuestProgress {
+      quests.QuestForRenderer renderer_quest = 1;
+    }
   }
 
   message FromRenderer {}

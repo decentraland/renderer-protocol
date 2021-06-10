@@ -1,18 +1,36 @@
 ﻿syntax = "proto3";
 
+import "primitives/scene.proto";
+import "primitives/common.proto";
+
 message NavigationMap {
   message FromKernel {
     oneof message {
       UpdateMinimapSceneInformation update_minimap = 1;
     }
-    message UpdateMinimapSceneInformation {} //(info: MinimapSceneInfo[]);
+    message UpdateMinimapSceneInformation {
+      message MinimapSceneInfo {
+        string name = 1;
+        string owner = 2;
+        string description = 3;
+        optional string preview_image_url = 4;
+        int32 type = 5;
+        repeated scene.ParcelPosition parcels = 6;
+        bool is_poi = 7;
+      }
+
+      repeated MinimapSceneInfo info = 1;
+    }
   }
 
-  message FromRenderer
-  {
+  message FromRenderer {
     oneof message {
       RequestScenesInfoInArea request_scenes = 1;
     }
+
     // Navmap info management
-    message RequestScenesInfoInArea {} //(data: { parcel: { x: number; y: number }; scenesAround: number });
+    message RequestScenesInfoInArea {
+      common.Vector2 parcel = 1;
+      float scenes_around = 2;
+    }
   }}

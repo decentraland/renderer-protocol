@@ -1,5 +1,6 @@
 ﻿syntax = "proto3";
 
+import "world_runtime/world_runtime.proto";
 import "airdrop.proto";
 import "analytics.proto";
 import "browser_state.proto";
@@ -32,7 +33,7 @@ import "catalog.proto";
 
 package decentraland.renderer;
 
-option csharp_namespace = "DCL.Interface";
+option csharp_namespace = "DCL.Protocol";
 
 message FromRenderer {
   oneof message {
@@ -99,5 +100,6 @@ message FromKernel {
     Tutorial.FromKernel tutorial = 27;
     UsersSearch.FromKernel users_search = 28;
     VoiceChat.FromKernel voice_chat = 29;
+    world_runtime.SceneMessage scene_message = 30;
   }
 }

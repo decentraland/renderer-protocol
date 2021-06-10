@@ -1,17 +1,15 @@
 ﻿syntax = "proto3";
 
-message Profile {
-  message ProfileForRenderer {
-    // TODO fill
-  }
+import "primitives/profile.proto";
 
+message Profile {
   message FromKernel {
     oneof message {
       LoadProfile load_profile = 1;
     }
 
     message LoadProfile {
-      ProfileForRenderer profile = 1;
+      profile.ProfileForRenderer profile = 1;
     }
   }
 
@@ -27,7 +25,7 @@ message Profile {
     message SaveUserUnverifiedName {
       string newUnverifiedName = 1;
     }
-    
+
     message RequestUserProfile {
       string userId = 1;
     }

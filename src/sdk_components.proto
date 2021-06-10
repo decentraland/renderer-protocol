@@ -4,6 +4,9 @@ message SDKComponents {
   message FromKernel {}
 
   message FromRenderer {
+    oneof message {
+      SetAudioStream set_audio_stream = 1;
+    }
     message SetAudioStream {
       string url = 1;
       bool play = 2;

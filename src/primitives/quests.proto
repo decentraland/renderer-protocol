@@ -1,0 +1,47 @@
+﻿syntax = "proto3";
+
+package quests;
+
+message SectionForRenderer {
+  string id = 1;
+  string name = 2;
+  float progress = 3;
+  repeated TaskForRenderer tasks = 4;
+}
+
+message TaskForRenderer {
+  string id = 1;
+  string name = 2;
+  string type = 3;
+  float progress = 4;
+  string status = 5;
+  optional string coordinates = 6;
+  string payload = 7;
+}
+
+enum Visibility {
+  VISIBLE = 0;
+  VISIBLE_IF_CAN_START = 1;
+  SECRET = 2;
+}
+
+message QuestForRenderer {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  optional string thumbnail_entry = 4;
+  optional string thumbnail_banner = 5;
+  string status = 6;
+  optional string icon = 7;
+  repeated SectionForRenderer sections = 8;
+  repeated RewardForRenderer rewards = 9;
+  Visibility visibility = 10;
+}
+
+message RewardForRenderer {
+  string id = 1;
+  string name = 2;
+  string type = 3;
+  string image_url = 4;
+  string status = 5;
+}

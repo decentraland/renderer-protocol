@@ -12,10 +12,23 @@ message Reporting {
       ReportUserEmail report_user_email = 5;
     }
 
-    // Reporting and blocking management
-    message ReportScene {} //(sceneId: string);
-    message ReportPlayer {} //(username: string);
-    message BlockPlayer {} //(data: { userId: string });
-    message UnblockPlayer {} //(data: { userId: string })
-    message ReportUserEmail {} //(data: { userEmail: string });
+    message ReportScene {
+      string scene_id = 1;
+    }
+
+    message ReportPlayer {
+      string username = 1;
+    }
+
+    message BlockPlayer {
+      string user_id = 1;
+    }
+
+    message UnblockPlayer {
+      string user_id = 1;
+    }
+
+    message ReportUserEmail {
+      string user_email = 1;
+    }
   }}

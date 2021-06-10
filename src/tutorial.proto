@@ -9,10 +9,22 @@ message Tutorial {
       ConfigureTutorial configure_tutorial = 3;
     }
 
-    message SetTutorialEnabled {} //(tutorialConfig: TutorialController.TutorialInitializationMessage);
-    message SetTutorialEnabledForUsersThatAlreadyDidTheTutorial {} //(tutorialConfig: TutorialController.TutorialInitializationMessage)
-    message ConfigureTutorial {} //(tutorialStep: number, tutorialConfig: TutorialController.TutorialInitializationMessage)
+    message TutorialInitializationMessage {
+      bool from_deep_link = 1;
+      bool enable_new_tutorial_camera = 2;
+    }
 
+    message SetTutorialEnabled {
+      TutorialInitializationMessage tutorial_config = 1;
+    }
+    message SetTutorialEnabledForUsersThatAlreadyDidTheTutorial {
+      TutorialInitializationMessage tutorial_config = 1;
+    }
+
+    message ConfigureTutorial {
+      int32 tutorial_step = 1;
+      TutorialInitializationMessage tutorial_config = 2;
+    }
   }
 
   message FromRenderer
@@ -20,7 +32,9 @@ message Tutorial {
     oneof message {
       SaveUserTutorialStep save_user_tutorial_step = 1;
     }
-    
-    message SaveUserTutorialStep {} //(data: { tutorialStep: number });
+
+    message SaveUserTutorialStep {
+      int32 tutorialStep = 1;
+    }
   }
 }

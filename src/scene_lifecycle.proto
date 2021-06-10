@@ -24,7 +24,7 @@ message SceneLifecycle {
 
     message ControlEvent {
       string eventType = 1;
-      //({eventType, payload}: {eventType: string; payload: any}); 
+      string sceneId = 2;
     }
   }
 }

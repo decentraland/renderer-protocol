@@ -1,5 +1,8 @@
 ﻿syntax = "proto3";
 
+import "primitives/scene.proto";
+import "primitives/profile.proto";
+
 message Catalog {
 
   message Wearable {
@@ -24,7 +27,7 @@ message Catalog {
     repeated string body_shapes = 2;
     repeated string override_hides = 3;
     repeated string override_replaces = 4;
-    repeated decentraland.scene.ContentMapping mappings = 5;
+    repeated scene.ContentMapping mappings = 5;
   }
 
   message FromKernel
@@ -38,8 +41,9 @@ message Catalog {
     }
 
     message AddUserProfileToCatalog {
-      ProfileForRenderer profile = 1;
+      profile.ProfileForRenderer profile = 1;
     }
+
     message AddWearablesToCatalog {
       optional string context = 1;
       repeated Wearable wearables = 2;

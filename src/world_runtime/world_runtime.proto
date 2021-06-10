@@ -4,12 +4,12 @@
 
 syntax = "proto3";
 
-import "common.proto";
-import "scene.proto";
+import "primitives/common.proto";
+import "primitives/scene.proto";
 
-option csharp_namespace = "DCL.Interface.Engine";
+option csharp_namespace = "DCL.Protocol.WorldRuntime";
 
-package decentraland.renderer.engine;
+package world_runtime;
 
 message PB_CreateEntity {
   string id = 1;
@@ -183,7 +183,7 @@ message PB_LoadParcelScenes {
   string id = 1;
   PB_Position base_position = 2;
   repeated PB_Position parcels = 3;
-  repeated decentraland.scene.ContentMapping contents = 4;
+  repeated scene.ContentMapping contents = 4;
   string base_url = 5;
   // ILand land = 6;
 }
@@ -246,7 +246,7 @@ message PB_AvatarShape {
 message PB_Wearable {
   string categody = 1;
   string content_name = 2;
-  repeated decentraland.scene.ContentMapping contents = 3;
+  repeated scene.ContentMapping contents = 3;
 }
 
 message PB_Face {

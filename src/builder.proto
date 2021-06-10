@@ -1,10 +1,9 @@
 ﻿syntax = "proto3";
 
-import "common.proto";
+import "primitives/common.proto";
 
 message Builder {
-  message FromKernel
-  {
+  message FromKernel {
     oneof message {
       SetBuilderReady set_builder_ready = 1;
       SendPublishSceneResult send_publish_scene_result = 2;
@@ -29,7 +28,10 @@ message Builder {
 
     message SetBuilderReady {}
 
-    message SendPublishSceneResult {} //(result: DeploymentResult)
+    message SendPublishSceneResult {
+      bool ok = 1;
+      optional string error = 2;
+    }
 
     message SendBuilderMessage {
       string method = 1;
@@ -69,7 +71,7 @@ message Builder {
     }
 
     message SetCameraPositionBuilder {
-      common.Vector3 = 1;
+      common.Vector3 position = 1;
     }
 
     message SetCameraRotationBuilder {

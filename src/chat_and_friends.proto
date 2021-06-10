@@ -1,7 +1,8 @@
 ﻿syntax = "proto3";
 
-message ChatAndFriends {
+import "primitives/common.proto";
 
+message ChatAndFriends {
   enum PresenceStatus {
     PresenceStatus_NONE = 0;
     PresenceStatus_OFFLINE = 1;
@@ -71,13 +72,32 @@ message ChatAndFriends {
     }
   }
 
-  message FromRenderer
-  {
+  message FromRenderer {
     oneof message {
       SendChatMessage send_chat_message = 1;
       UpdateFriendshipStatus update_friendship_status = 2;
     }
-    message SendChatMessage {} //(data: { message: ChatMessage })
-    message UpdateFriendshipStatus {} //(message: FriendshipUpdateStatusMessage);
+
+    message SendChatMessage {
+      message ChatMessage {
+        string message_id = 1;
+        ChatMessageType message_type = 2;
+        string sender = 3;
+        string recipient = 4;
+        int32 timestamp = 5;
+        string body = 6;
+      }
+
+      ChatMessage message = 1;
+    }
+
+    message UpdateFriendshipStatus {
+      message FriendshipUpdateStatusMessage {
+        string userId = 1;
+        FriendshipAction action = 2;
+      }
+
+      FriendshipUpdateStatusMessage updateMessage = 1;
+    }
   }
 }
