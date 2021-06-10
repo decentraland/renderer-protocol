@@ -1,13 +1,18 @@
 ﻿syntax = "proto3";
 
 message NavigationMap {
-  message FromKernel
-  {
+  message FromKernel {
+    oneof message {
+      UpdateMinimapSceneInformation update_minimap = 1;
+    }
     message UpdateMinimapSceneInformation {} //(info: MinimapSceneInfo[]);
   }
 
   message FromRenderer
   {
+    oneof message {
+      RequestScenesInfoInArea request_scenes = 1;
+    }
     // Navmap info management
     message RequestScenesInfoInArea {} //(data: { parcel: { x: number; y: number }; scenesAround: number });
   }}

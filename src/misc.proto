@@ -1,16 +1,21 @@
 ﻿syntax = "proto3";
 
 message Misc {
-  message FromKernel
-  {
+  message FromKernel {
+    oneof message {
+      SendGenericMessage send_generic_message = 1;
+      SetKernelConfiguration set_kernel_config = 2;
+    }
     // Generic
     message SendGenericMessage {} //(object: string, method: string, payload: string)
     // General
     message SetKernelConfiguration {} //(config: KernelConfigForRenderer);
   }
 
-  message FromRenderer
-  {
+  message FromRenderer {
+    oneof message {
+      SendScreenshot send_screenshot = 1;
+    }
     message SendScreenshot {} //(data: { id: string; encodedTexture: string });
   }
 }

@@ -1,8 +1,11 @@
 ﻿syntax = "proto3";
 
 message Quests {
-  message FromKernel
-  {
+  message FromKernel {
+    oneof message {
+      InitQuestsInfo init_quests_info = 1;
+      UpdateQuestProgress update_quest_progress = 2;
+    }
     message InitQuestsInfo {} //(rendererQuests: QuestForRenderer[]);
     message UpdateQuestProgress {} //(rendererQuest: QuestForRenderer);
   }

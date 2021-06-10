@@ -1,14 +1,19 @@
 ﻿syntax = "proto3";
 
 message Explore {
-  message FromKernel
-  {
+  message FromKernel {
+    oneof message {
+      UpdateRealmsInfo update_realms_info = 1;
+      UpdateHotScenesList update_hot_scenes_list = 2;
+    }
     message UpdateRealmsInfo {} //(realmsInfo: Partial<RealmsInfoForRenderer>);
     message UpdateHotScenesList {} //(info: HotSceneInfo[]);
   }
 
-  message FromRenderer
-  {
+  message FromRenderer {
+    oneof message {
+      FetchHotScenes fetch_hot_scenes = 1;
+    }
     message FetchHotScenes {}
   }
 }

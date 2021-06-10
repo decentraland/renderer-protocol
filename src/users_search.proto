@@ -1,14 +1,18 @@
 ﻿syntax = "proto3";
 
 message UsersSearch {
-  message FromKernel
-  {
+  message FromKernel {
+    oneof message {
+      SetENSOwnerQueryResult set_ens_owner_query_result = 1;
+    }
     // ???
     message SetENSOwnerQueryResult {} //(searchInput: string, profiles: Profile[] | undefined);
   }
 
-  message FromRenderer
-  {
+  message FromRenderer {
+    oneof message {
+      SearchENSOwner search_ens_owner = 1;
+    }
     // Profile??
     message SearchENSOwner {} //(data: { name: string; maxResults?: number });
   }

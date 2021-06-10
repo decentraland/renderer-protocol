@@ -1,11 +1,13 @@
 ﻿syntax = "proto3";
 
 message SDKComponents {
-  message FromKernel
-  {
-  }
+  message FromKernel {}
 
   message FromRenderer {
-    message SetAudioStream {} //(data: { url: string; play: boolean; volume: number });
+    message SetAudioStream {
+      string url = 1;
+      bool play = 2;
+      float volume = 3;
+    }
   }
 }

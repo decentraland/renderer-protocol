@@ -1,9 +1,7 @@
 ﻿syntax = "proto3";
 
 message Analytics {
-  message FromKernel {
-
-  }
+  message FromKernel {}
 
   message FromRenderer {
     oneof message {
@@ -28,6 +26,5 @@ message Analytics {
       int32 hiccups_time = 4;
       int32 total_time = 5;
     }
-
   }
 }

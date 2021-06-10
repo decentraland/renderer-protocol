@@ -2,6 +2,10 @@
 
 message Notifications {
   message FromKernel {
+    oneof message {
+      ShowNotification show_notification = 1;
+      ShowWelcomeNotification show_welcome_notification = 2;
+    }
     message ShowNotification {} //(notification: Notification);
     message ShowWelcomeNotification {}
   }

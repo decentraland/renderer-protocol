@@ -1,8 +1,11 @@
 ﻿syntax = "proto3";
 
 message HUD {
-  message FromKernel
-  {
+  message FromKernel {
+    oneof message {
+      ConfigureHUDElement configure_hud_element = 1;
+    }
+    
     message ConfigureHUDElement {}
     /*
       (

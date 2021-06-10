@@ -4,6 +4,14 @@ message Reporting {
   message FromKernel {}
 
   message FromRenderer {
+    oneof message {
+      ReportScene report_scene = 1;
+      ReportPlayer report_player = 2;
+      BlockPlayer block_player = 3;
+      UnblockPlayer unblock_player = 4;
+      ReportUserEmail report_user_email = 5;
+    }
+
     // Reporting and blocking management
     message ReportScene {} //(sceneId: string);
     message ReportPlayer {} //(username: string);

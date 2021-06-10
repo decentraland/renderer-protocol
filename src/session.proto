@@ -4,6 +4,10 @@ message Session {
   message FromKernel {}
 
   message FromRenderer {
+    oneof message {
+      LogOut log_out = 1;
+      RedirectToSignUp redirect_to_sign_up = 2;
+    }
     message LogOut {};
     message RedirectToSignUp {};
   }

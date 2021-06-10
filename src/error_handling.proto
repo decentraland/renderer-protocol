@@ -2,6 +2,9 @@
 
 message ErrorHandling {
   message FromKernel {
+    oneof message {
+      CrashPayloadRequest crash_payload_request = 1;
+    }
     message CrashPayloadRequest {}
   }
 
@@ -13,9 +16,16 @@ message ErrorHandling {
     }
 
     message ReportAvatarFatalError {}
+
     message SystemInfoReport {
-      //(data: SystemInfoPayload)
+      string graphics_device_name = 1;
+      string graphics_device_version = 2;
+      int32 graphics_memory_size = 3;
+      string processor_type = 4;
+      int32 processor_count = 5;
+      int32 system_memory_size = 6;
     }
+
     message CrashPayloadResponse {
       string payload = 1;
     }

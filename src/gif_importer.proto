@@ -1,15 +1,39 @@
 ﻿syntax = "proto3";
 
 message GifImporter {
-  message FromKernel
-  {
-    message SendGIFPointers {}//(id: string, width: number, height: number, pointers: number[], frameDelays: number[]) {
-    message SendGIFFetchFailure {} //(id: string);
+  message FromKernel {
+    oneof message {
+      SendGIFPointers send_gif_pointers = 1;
+      SendGIFFetchFailure send_gif_fetch_failure = 2;
+    }
+
+    message SendGIFPointers {
+      string id = 1;
+      int32 width = 2;
+      int32 height = 3;
+      repeated int32 pointers = 4;
+      repeated int32 frame_delays = 5;
+    }
+
+    message SendGIFFetchFailure {
+      string id = 1;
+    }
   }
 
-  message FromRenderer
-  {
-    message RequestGIFProcessor {} //(data: { imageSource: string; id: string; isWebGL1: boolean });
-    message DeleteGIF {} //(data: { value: string })
+  message FromRenderer {
+    oneof message {
+      RequestGIFProcessor request_gif_processor = 1;
+      DeleteGif delete_gif = 2;
+    }
+
+    message RequestGIFProcessor {
+      string gif_id = 1;
+      string image_source = 2;
+      bool isWebGL1 = 3;
+    }
+
+    message DeleteGif {
+      string gif_id = 1;
+    }
   }
 }

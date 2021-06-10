@@ -1,38 +1,36 @@
 ﻿syntax = "proto3";
 
 message AirDrop {
-  message FromKernel
-  {
+  message AirDropInfo {
+    // export type Airdrop_input = {
+    //    string id = 0;
+    //    string title = 0;
+    //    string subtitle = 0;
+    //    repeated AirdropItem items = 0;
+    // }
+    // export type Airdrop_info = {
+    //    string id = 0;
+    // } & AirdropInput
+
+    // export type Rarity_enum = 'common' | 'uncommon' | 'rare' | 'epic' | 'mythic' | 'legendary' | 'unique'
+
+    // export type Airdrop_item = {
+    //    string name = 0;
+    //    string subtitle? = 0;
+    //    string thumbnail_url = 0;
+    //    RarityEnum rarity = 0;
+    //    'collectible' | 'erc20' type = 0;
+    // }
+  }
+
+  message FromKernel {
     oneof message {
       TriggerAirdropDisplay trigger_airdrop_display = 1;
-    }
-
-    message AirDropInfo {
-      // export type Airdrop_input = {
-      //    string id = 0;
-      //    string title = 0;
-      //    string subtitle = 0;
-      //    repeated AirdropItem items = 0;
-      // }
-      // export type Airdrop_info = {
-      //    string id = 0;
-      // } & AirdropInput
-
-      // export type Rarity_enum = 'common' | 'uncommon' | 'rare' | 'epic' | 'mythic' | 'legendary' | 'unique'
-
-      // export type Airdrop_item = {
-      //    string name = 0;
-      //    string subtitle? = 0;
-      //    string thumbnail_url = 0;
-      //    RarityEnum rarity = 0;
-      //    'collectible' | 'erc20' type = 0;
-      // }
     }
 
     message TriggerAirdropDisplay {
       AirDropInfo data = 1;
     }
-
   }
 
   message FromRenderer {}

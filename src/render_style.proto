@@ -1,14 +1,15 @@
 ﻿syntax = "proto3";
 
-message RenderStyle
-{
+message RenderStyle {
   message FromKernel {
     oneof message {
       SetRenderProfile set_render_profile = 1;
     }
-    message SetRenderProfile{
+    
+    message SetRenderProfile {
       int32 id = 1;
     }
   }
+
   message FromRenderer {}
 }

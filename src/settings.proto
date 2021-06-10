@@ -1,7 +1,6 @@
 ﻿syntax = "proto3";
 
 message Settings {
-  
   message FromKernel {
     oneof message {
       SetTargetHeight set_target_height = 1;
@@ -10,7 +9,6 @@ message Settings {
     message SetTargetHeight {
       int32 height = 1;
     }
-
   }
 
   message FromRenderer {
