@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message Analytics {
+message AnalyticsBridge {
   message FromKernel {}
 
   message FromRenderer {

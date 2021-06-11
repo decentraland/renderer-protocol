@@ -1,8 +1,8 @@
 ﻿syntax = "proto3";
 
-import "primitives/profile.proto";
+import "shared/profile.proto";
 
-message Profile {
+message ProfileBridge {
   message FromKernel {
     oneof message {
       LoadProfile load_profile = 1;

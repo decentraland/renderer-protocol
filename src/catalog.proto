@@ -1,9 +1,9 @@
 ﻿syntax = "proto3";
 
-import "primitives/scene.proto";
-import "primitives/profile.proto";
+import "shared/scene.proto";
+import "shared/profile.proto";
 
-message Catalog {
+message CatalogBridge {
 
   message Wearable {
     string wearable_id = 1;

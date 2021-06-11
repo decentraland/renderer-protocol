@@ -1,8 +1,8 @@
 ﻿syntax = "proto3";
 
-import "primitives/scene.proto";
+import "shared/scene.proto";
 
-message Explore {
+message ExploreBridge {
   message RealmInfo {
     string layer = 1;
     string server_name = 2;

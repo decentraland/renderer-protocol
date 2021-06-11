@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message HUDComponents {
+message HudComponentsBridge {
   message AvatarInfo {
     string body_shape = 1;
     string skin_color = 2;

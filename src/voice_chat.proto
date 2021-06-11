@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message VoiceChat {
+message VoiceChatBridge {
   message FromKernel {
     oneof message {
       SetPlayerTalking set_player_talking = 1;

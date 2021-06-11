@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message Notifications {
+message NotificationsBridge {
   enum NotificationType {
     NotificationType_Generic = 0;
     NotificationType_ScriptingError = 1;

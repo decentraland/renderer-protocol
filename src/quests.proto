@@ -1,8 +1,8 @@
 ﻿syntax = "proto3";
 
-import "primitives/quests.proto";
+import "shared/quests.proto";
 
-message Quests {
+message QuestsBridge {
   message FromKernel {
     oneof message {
       InitQuestsInfo init_quests_info = 1;

@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message Debug {
+message DebugBridge {
   message FromKernel {
     oneof message {
       SetDebug set_debug = 1;

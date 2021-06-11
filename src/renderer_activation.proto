@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message RendererActivation {
+message RendererActivationBridge {
   message FromKernel {
     oneof message {
       ActivateRendering activate_rendering = 1;

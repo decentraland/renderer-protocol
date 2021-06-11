@@ -1,8 +1,8 @@
 ﻿syntax = "proto3";
 
-import "primitives/common.proto";
+import "shared/common.proto";
 
-message ChatAndFriends {
+message ChatAndFriendsBridge {
   enum PresenceStatus {
     PresenceStatus_NONE = 0;
     PresenceStatus_OFFLINE = 1;

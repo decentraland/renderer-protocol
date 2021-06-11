@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-import "primitives/common.proto";
+import "shared/common.proto";
 
 package profile;
 

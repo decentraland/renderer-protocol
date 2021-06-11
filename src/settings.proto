@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message Settings {
+message SettingsBridge {
   message FromKernel {
     oneof message {
       SetTargetHeight set_target_height = 1;

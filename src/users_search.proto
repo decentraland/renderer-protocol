@@ -1,8 +1,8 @@
 ﻿syntax = "proto3";
 
-import "primitives/profile.proto";
+import "shared/profile.proto";
 
-message UsersSearch {
+message UsersSearchBridge {
   message FromKernel {
     oneof message {
       SetENSOwnerQueryResult set_ens_owner_query_result = 1;

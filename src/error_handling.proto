@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message ErrorHandling {
+message ErrorHandlingBridge {
   message FromKernel {
     oneof message {
       CrashPayloadRequest crash_payload_request = 1;

@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message Emotes {
+message EmotesBridge {
   message FromKernel {
     oneof message {
       TriggerSelfUserExpression trigger_self_user_expression = 1;
@@ -15,7 +15,7 @@ message Emotes {
     oneof message {
       TriggerExpression trigger_expression = 1;
     }
-    
+
     message TriggerExpression {
       string id = 1;
       float timestamp = 2;

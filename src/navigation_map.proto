@@ -1,9 +1,9 @@
 ﻿syntax = "proto3";
 
-import "primitives/scene.proto";
-import "primitives/common.proto";
+import "shared/scene.proto";
+import "shared/common.proto";
 
-message NavigationMap {
+message NavigationMapBridge {
   message FromKernel {
     oneof message {
       UpdateMinimapSceneInformation update_minimap = 1;

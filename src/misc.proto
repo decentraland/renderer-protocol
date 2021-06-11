@@ -27,7 +27,7 @@ message KernelConfigForRenderer {
   repeated ValidWorldRange valid_world_ranges = 3;
 }
 
-message Misc {
+message MiscBridge {
   message FromKernel {
     oneof message {
       SendGenericMessage send_generic_message = 1;

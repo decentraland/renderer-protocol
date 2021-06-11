@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message SceneLifecycle {
+message SceneLifecycleBridge {
   message FromKernel {
     oneof message {
       PreloadFinished preload_finished = 1;

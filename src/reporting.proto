@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message Reporting {
+message ReportingBridge {
   message FromKernel {}
 
   message FromRenderer {

@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message SDKComponents {
+message AudioStreamBridge {
   message FromKernel {}
 
   message FromRenderer {

@@ -1,11 +1,11 @@
 ﻿syntax = "proto3";
 
-message Tutorial {
+message TutorialBridge {
   message FromKernel
   {
     oneof message {
       SetTutorialEnabled set_tutorial_enabled = 1;
-      SetTutorialEnabledForUsersThatAlreadyDidTheTutorial set_tutorial_enabled_for_users = 2;
+      SetTutorialEnabledForUsersThatAlreadyDidTheTutorial set_tutorial_enabled_for_users_that_already_did_the_tutorial = 2;
       ConfigureTutorial configure_tutorial = 3;
     }
 

@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message BrowserState {
+message BrowserStateBridge {
   message FromKernel {
     oneof message {
       ReportFocusOn report_focus_on = 1;

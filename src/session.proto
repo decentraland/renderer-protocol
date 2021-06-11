@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message Session {
+message SessionBridge {
   message FromKernel {}
 
   message FromRenderer {

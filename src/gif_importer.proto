@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message GifImporter {
+message GifImporterBridge {
   message FromKernel {
     oneof message {
       SendGIFPointers send_gif_pointers = 1;

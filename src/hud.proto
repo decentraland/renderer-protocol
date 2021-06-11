@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-message HUD {
+message HudBridge {
   message FromKernel {
     oneof message {
       ConfigureHUDElement configure_hud_element = 1;
