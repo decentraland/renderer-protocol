@@ -1,0 +1,30 @@
+﻿syntax = "proto3";
+
+message SceneLifecycleBridge {
+  message FromKernel {
+    oneof message {
+      PreloadFinished preload_finished = 1;
+    }
+
+    message PreloadFinished {
+      string sceneId = 1;
+    }
+  }
+
+  message FromRenderer {
+    oneof message {
+      ScenesLoadingFeedback scenes_loading_feedback = 1;
+      ControlEvent control_event = 2;
+    }
+
+    message ScenesLoadingFeedback {
+      string message = 1;
+      int32 loadPercentage = 2;
+    }
+
+    message ControlEvent {
+      string eventType = 1;
+      string sceneId = 2;
+    }
+  }
+}

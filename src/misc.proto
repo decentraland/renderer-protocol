@@ -1,0 +1,60 @@
+﻿syntax = "proto3";
+
+message KernelConfigForRenderer {
+  message Comms {
+    float comms_radius = 1;
+    bool voice_chat_enabled = 2;
+  }
+
+  message Profiles {
+    string name_valid_regex = 1;
+    string name_valid_character_regex = 2;
+  }
+
+  message Features {
+    bool enable_builder_in_world = 3;
+  }
+
+  message ValidWorldRange {
+    int32 x_min = 1;
+    int32 x_max = 2;
+    int32 y_min = 3;
+    int32 y_max = 4;
+  }
+
+  bool gif_supported = 1;
+  string tld = 2;
+  repeated ValidWorldRange valid_world_ranges = 3;
+}
+
+message MiscBridge {
+  message FromKernel {
+    oneof message {
+      SendGenericMessage send_generic_message = 1;
+      SetKernelConfiguration set_kernel_config = 2;
+    }
+
+    // Generic
+    message SendGenericMessage {
+      string object = 1;
+      string method = 2;
+      string payload = 3;
+    }
+
+    // General
+    message SetKernelConfiguration {
+      KernelConfigForRenderer config = 1;
+    }
+  }
+
+  message FromRenderer {
+    oneof message {
+      SendScreenshot send_screenshot = 1;
+    }
+
+    message SendScreenshot {
+      string id = 1;
+      string encoded_texture = 2;
+    }
+  }
+}

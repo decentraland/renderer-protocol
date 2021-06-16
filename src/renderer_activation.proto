@@ -1,0 +1,14 @@
+﻿syntax = "proto3";
+
+message RendererActivationBridge {
+  message FromKernel {
+    oneof message {
+      ActivateRendering activate_rendering = 1;
+      DeactivateRendering deactivate_rendering = 2;
+    }
+    message ActivateRendering {}
+    message DeactivateRendering {}
+  }
+
+  message FromRenderer {}
+}

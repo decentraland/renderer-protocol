@@ -1,0 +1,55 @@
+﻿syntax = "proto3";
+
+message VoiceChatBridge {
+  message FromKernel {
+    oneof message {
+      SetPlayerTalking set_player_talking = 1;
+      SetUserTalking set_user_talking = 2;
+      SetUsersMuted set_users_muted = 3;
+      SetVoiceChatEnabledByScene set_voice_chat_enabled_by_scene = 4;
+    }
+
+    message SetPlayerTalking {
+      bool talking = 2;
+    }
+
+    message SetUserTalking {
+      string user_id = 1;
+      bool talking = 2;
+    }
+
+    message SetUsersMuted {
+      repeated string user_id = 1;
+      bool muted = 2;
+    }
+
+    message SetVoiceChatEnabledByScene {
+      bool enabled = 1;
+    }
+  }
+
+  message FromRenderer {
+    oneof message {
+      ToggleVoiceChatRecording toggle_voice_chat = 1;
+      SetVoiceChatRecording set_voice_chat_recording = 2;
+      ApplySettings apply_settings = 3;
+      SetMuteUsers set_mute_users = 4;
+    }
+
+    message ToggleVoiceChatRecording {}
+
+    message SetVoiceChatRecording {
+      bool recording = 1;
+    }
+
+    message ApplySettings {
+      float voice_chat_volume = 1;
+      float voice_chat_allow_category = 2;
+    }
+
+    message SetMuteUsers {
+      bool mute = 1;
+      repeated string users = 2;
+    }
+  }
+}

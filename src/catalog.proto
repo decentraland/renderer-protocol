@@ -1,0 +1,77 @@
+﻿syntax = "proto3";
+
+import "shared/scene.proto";
+import "shared/profile.proto";
+
+message CatalogBridge {
+
+  message Wearable {
+    string wearable_id = 1;
+    string rarity = 2;
+    map<string, string> i18n = 3;
+    string thumbnail = 4;
+    string description = 5;
+
+    string category = 6;
+    repeated string tags = 7;
+    repeated string hides = 8;
+    repeated string replaces = 9;
+    repeated BodyShapeRepresentation representations = 10;
+
+    string base_url = 11;
+    string base_url_bundles = 12;
+  }
+
+  message BodyShapeRepresentation {
+    string main_file = 1;
+    repeated string body_shapes = 2;
+    repeated string override_hides = 3;
+    repeated string override_replaces = 4;
+    repeated scene.ContentMapping mappings = 5;
+  }
+
+  message FromKernel
+  {
+    oneof message {
+      AddUserProfileToCatalog add_user_profile_to_catalog = 1;
+      AddWearablesToCatalog add_wearables_to_catalog = 2;
+      WearablesRequestFailed wearables_request_failed = 3;
+      RemoveWearablesFromCatalog remove_wearables_from_catalog = 4;
+      ClearWearableCatalog clear_wearable_catalog = 5;
+    }
+
+    message AddUserProfileToCatalog {
+      profile.ProfileForRenderer profile = 1;
+    }
+
+    message AddWearablesToCatalog {
+      optional string context = 1;
+      repeated Wearable wearables = 2;
+    }
+
+    message WearablesRequestFailed {
+      string error = 1;
+      optional string context = 2;
+    }
+
+    message RemoveWearablesFromCatalog {
+      repeated string wearable_ids = 1;
+    }
+
+    message ClearWearableCatalog {}
+  }
+
+  message FromRenderer
+  {
+    oneof message {
+      RequestWearables request_wearables = 1;
+    }
+
+    message RequestWearables {
+      optional string owned_by_user = 1;
+      repeated string wearable_ids = 2;
+      repeated string collection_ids = 3;
+      optional string context = 4;
+    }
+  }
+}

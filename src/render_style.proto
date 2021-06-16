@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+message RenderStyleBridge {
+  message FromKernel {
+    oneof message {
+      SetRenderProfile set_render_profile = 1;
+    }
+
+    message SetRenderProfile {
+      int32 id = 1;
+    }
+  }
+
+  message FromRenderer {}
+}

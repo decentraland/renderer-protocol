@@ -1,0 +1,124 @@
+﻿syntax = "proto3";
+
+import "shared/common.proto";
+
+message BuilderBridge {
+  message FromKernel {
+    oneof message {
+      SetBuilderReady set_builder_ready = 1;
+      SendPublishSceneResult send_publish_scene_result = 2;
+      SendBuilderMessage send_builder_message = 3;
+      SelectGizmoBuilder select_gizmo_builder = 4;
+      ResetBuilderObject reset_builder_object = 5;
+      SetCameraZoomDeltaBuilder set_camera_zoom_delta_builder = 6;
+      GetCameraTargetBuilder  get_camera_target_builder = 7;
+      SetPlayModeBuilder set_play_mode_builder = 8;
+      PreloadFileBuilder preload_file_builder = 9;
+      GetMousePositionBuilder get_mouse_position_builder = 10;
+      TakeScreenshotBuilder take_screenshot_builder = 11;
+      SetCameraPositionBuilder set_camera_position_builder = 12;
+      SetCameraRotationBuilder set_camera_rotation_builder = 13;
+      ResetCameraZoomBuilder reset_camera_zoom_builder = 14;
+      SetBuilderGridResolution set_builder_grid_resolution = 15;
+      SetBuilderSelectedEntities set_builder_selected_entities = 16;
+      ResetBuilderScene reset_builder_scene = 17;
+      OnBuilderKeyDown on_builder_key_down = 18;
+      SetBuilderConfiguration set_builder_configuration = 19;
+    }
+
+    message SetBuilderReady {}
+
+    message SendPublishSceneResult {
+      bool ok = 1;
+      optional string error = 2;
+    }
+
+    message SendBuilderMessage {
+      string method = 1;
+      string payload = 2;
+    }
+
+    message SelectGizmoBuilder {
+      string type = 2;
+    }
+
+    message ResetBuilderObject {}
+
+    message SetCameraZoomDeltaBuilder {
+      int32 delta = 1;
+    }
+
+    message GetCameraTargetBuilder {
+      string futureId = 1;
+    }
+
+    message SetPlayModeBuilder {
+      string on = 1;
+    }
+
+    message PreloadFileBuilder {
+      string url = 1;
+    }
+
+    message GetMousePositionBuilder {
+      string x = 1;
+      string y = 2;
+      string id = 3;
+    }
+
+    message TakeScreenshotBuilder {
+      string id = 1;
+    }
+
+    message SetCameraPositionBuilder {
+      common.Vector3 position = 1;
+    }
+
+    message SetCameraRotationBuilder {
+      float alpha = 1;
+      float beta = 2;
+    }
+
+    message ResetCameraZoomBuilder {}
+
+    message SetBuilderGridResolution {
+      float position = 1;
+      float rotation = 2;
+      float scale = 3;
+    }
+
+    message SetBuilderSelectedEntities {
+      repeated string entities = 1;
+    }
+
+    message ResetBuilderScene {}
+
+    message OnBuilderKeyDown {
+      string key = 1;
+    }
+
+    message SetBuilderConfiguration {
+      float camera_zoom_min = 1;
+      float camera_zoom_max = 2;
+      float camera_zoom_default = 3;
+      bool disable_floor = 4;
+    }
+  }
+
+  message FromRenderer {
+    oneof message {
+      ReportBuilderCameraTarget report_builder_camera_target = 1;
+      ReportMousePosition report_mouse_position = 2;
+    }
+
+    message ReportBuilderCameraTarget {
+      string id = 1;
+      common.Vector3 cameraTarget = 2;
+    }
+
+    message ReportMousePosition {
+      common.Vector3 position = 1;
+      string id = 2;
+    }
+  }
+}

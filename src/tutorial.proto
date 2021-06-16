@@ -1,0 +1,40 @@
+﻿syntax = "proto3";
+
+message TutorialBridge {
+  message FromKernel
+  {
+    oneof message {
+      SetTutorialEnabled set_tutorial_enabled = 1;
+      SetTutorialEnabledForUsersThatAlreadyDidTheTutorial set_tutorial_enabled_for_users_that_already_did_the_tutorial = 2;
+      ConfigureTutorial configure_tutorial = 3;
+    }
+
+    message TutorialInitializationMessage {
+      bool from_deep_link = 1;
+      bool enable_new_tutorial_camera = 2;
+    }
+
+    message SetTutorialEnabled {
+      TutorialInitializationMessage tutorial_config = 1;
+    }
+    message SetTutorialEnabledForUsersThatAlreadyDidTheTutorial {
+      TutorialInitializationMessage tutorial_config = 1;
+    }
+
+    message ConfigureTutorial {
+      int32 tutorial_step = 1;
+      TutorialInitializationMessage tutorial_config = 2;
+    }
+  }
+
+  message FromRenderer
+  {
+    oneof message {
+      SaveUserTutorialStep save_user_tutorial_step = 1;
+    }
+
+    message SaveUserTutorialStep {
+      int32 tutorialStep = 1;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+﻿syntax = "proto3";
+
+message ErrorHandlingBridge {
+  message FromKernel {
+    oneof message {
+      CrashPayloadRequest crash_payload_request = 1;
+    }
+    message CrashPayloadRequest {}
+  }
+
+  message FromRenderer {
+    oneof message {
+      ReportAvatarFatalError report_avatar_fatal_error = 1;
+      SystemInfoReport system_info_report = 2;
+      CrashPayloadResponse crash_payload_response = 3;
+    }
+
+    message ReportAvatarFatalError {}
+
+    message SystemInfoReport {
+      string graphics_device_name = 1;
+      string graphics_device_version = 2;
+      int32 graphics_memory_size = 3;
+      string processor_type = 4;
+      int32 processor_count = 5;
+      int32 system_memory_size = 6;
+    }
+
+    message CrashPayloadResponse {
+      string payload = 1;
+    }
+  }
+}

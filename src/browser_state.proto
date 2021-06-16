@@ -1,0 +1,22 @@
+﻿syntax = "proto3";
+
+message BrowserStateBridge {
+  message FromKernel {
+    oneof message {
+      ReportFocusOn report_focus_on = 1;
+      ReportFocusOff report_focus_off = 2;
+      UnlockCursor unlock_cursor = 3;
+      SetCursorState set_cursor_state = 4;
+    }
+
+    message ReportFocusOn {}
+    message ReportFocusOff {}
+    message UnlockCursor {}
+    message SetCursorState
+    {
+      bool locked = 1;
+    }
+  }
+
+  message FromRenderer {}
+}

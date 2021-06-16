@@ -1,0 +1,30 @@
+﻿syntax = "proto3";
+
+message AnalyticsBridge {
+  message FromKernel {}
+
+  message FromRenderer {
+    oneof message {
+      Track track = 1;
+      SetDelightedSurveyEnabled set_delighted_survey_enabled = 2;
+      PerformanceReport performance_report = 3;
+    }
+
+    message Track {
+      string name = 1;
+      map<string, string> properties = 2;
+    }
+
+    message SetDelightedSurveyEnabled {
+      bool enabled = 1;
+    }
+
+    message PerformanceReport {
+      string samples = 1;
+      bool fps_is_capped = 2;
+      int32 hiccups_in_thousand_frames = 3;
+      int32 hiccups_time = 4;
+      int32 total_time = 5;
+    }
+  }
+}

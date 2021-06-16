@@ -1,0 +1,24 @@
+﻿syntax = "proto3";
+
+message EmotesBridge {
+  message FromKernel {
+    oneof message {
+      TriggerSelfUserExpression trigger_self_user_expression = 1;
+    }
+
+    message TriggerSelfUserExpression {
+      string expressionId = 1;
+    }
+  }
+
+  message FromRenderer {
+    oneof message {
+      TriggerExpression trigger_expression = 1;
+    }
+
+    message TriggerExpression {
+      string id = 1;
+      float timestamp = 2;
+    }
+  }
+}

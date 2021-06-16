@@ -1,0 +1,34 @@
+﻿syntax = "proto3";
+
+message ReportingBridge {
+  message FromKernel {}
+
+  message FromRenderer {
+    oneof message {
+      ReportScene report_scene = 1;
+      ReportPlayer report_player = 2;
+      BlockPlayer block_player = 3;
+      UnblockPlayer unblock_player = 4;
+      ReportUserEmail report_user_email = 5;
+    }
+
+    message ReportScene {
+      string scene_id = 1;
+    }
+
+    message ReportPlayer {
+      string username = 1;
+    }
+
+    message BlockPlayer {
+      string user_id = 1;
+    }
+
+    message UnblockPlayer {
+      string user_id = 1;
+    }
+
+    message ReportUserEmail {
+      string user_email = 1;
+    }
+  }}

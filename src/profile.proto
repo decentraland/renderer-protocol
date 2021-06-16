@@ -1,0 +1,33 @@
+﻿syntax = "proto3";
+
+import "shared/profile.proto";
+
+message ProfileBridge {
+  message FromKernel {
+    oneof message {
+      LoadProfile load_profile = 1;
+    }
+
+    message LoadProfile {
+      profile.ProfileForRenderer profile = 1;
+    }
+  }
+
+  message FromRenderer {
+    oneof message {
+      RequestOwnProfileUpdate request_own_profile_update = 1;
+      SaveUserUnverifiedName save_user_unverified_name = 2;
+      RequestUserProfile request_user_profile = 3;
+    }
+
+    message RequestOwnProfileUpdate {}
+
+    message SaveUserUnverifiedName {
+      string newUnverifiedName = 1;
+    }
+
+    message RequestUserProfile {
+      string userId = 1;
+    }
+  }
+}

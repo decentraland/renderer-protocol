@@ -1,0 +1,102 @@
+﻿syntax = "proto3";
+
+import "world_runtime/world_runtime.proto";
+import "analytics.proto";
+import "browser_state.proto";
+import "chat_and_friends.proto";
+import "debug.proto";
+import "emotes.proto";
+import "error_handling.proto";
+import "explore.proto";
+import "gif_importer.proto";
+import "hud.proto";
+import "hud_components.proto";
+import "misc.proto";
+import "navigation_map.proto";
+import "notifications.proto";
+import "profile.proto";
+import "quests.proto";
+import "render_style.proto";
+import "renderer_activation.proto";
+import "reporting.proto";
+import "scene_lifecycle.proto";
+import "audio_stream.proto";
+import "session.proto";
+import "settings.proto";
+import "teleport.proto";
+import "tutorial.proto";
+import "users_search.proto";
+import "voice_chat.proto";
+import "builder.proto";
+import "catalog.proto";
+
+package dcl.renderer_protocol;
+
+option csharp_namespace = "DCL.Protocol";
+
+message FromRenderer {
+  oneof message {
+    BrowserStateBridge.FromRenderer browser_state = 1;
+    GifImporterBridge.FromRenderer gif_importer = 2;
+    AudioStreamBridge.FromRenderer audio_stream = 3;
+    AnalyticsBridge.FromRenderer analytics = 4;
+    BuilderBridge.FromRenderer builder = 5;
+    CatalogBridge.FromRenderer catalog = 6;
+    ChatAndFriendsBridge.FromRenderer chat_and_friends = 7;
+    DebugBridge.FromRenderer debug = 8;
+    EmotesBridge.FromRenderer emotes = 9;
+    ErrorHandlingBridge.FromRenderer error_handling = 10;
+    ExploreBridge.FromRenderer explore = 11;
+    HudBridge.FromRenderer hud = 12;
+    HudComponentsBridge.FromRenderer hud_components = 13;
+    MiscBridge.FromRenderer misc = 14;
+    NavigationMapBridge.FromRenderer navigation_map = 15;
+    NotificationsBridge.FromRenderer notifications = 16;
+    ProfileBridge.FromRenderer profile = 17;
+    QuestsBridge.FromRenderer quests = 18;
+    RenderStyleBridge.FromRenderer render_style = 19;
+    RendererActivationBridge.FromRenderer renderer_activation = 20;
+    ReportingBridge.FromRenderer reporting = 21;
+    SceneLifecycleBridge.FromRenderer scene_lifecycle = 22;
+    SessionBridge.FromRenderer session = 24;
+    SettingsBridge.FromRenderer settings = 25;
+    TeleportBridge.FromRenderer teleport = 26;
+    TutorialBridge.FromRenderer tutorial = 27;
+    UsersSearchBridge.FromRenderer users_search = 28;
+    VoiceChatBridge.FromRenderer voice_chat = 29;
+  }
+}
+
+message FromKernel {
+  oneof message {
+    world_runtime.SceneMessage scene_message = 1;
+    BrowserStateBridge.FromKernel browser_state = 2;
+    GifImporterBridge.FromKernel gif_importer = 3;
+    AudioStreamBridge.FromKernel audio_stream = 4;
+    AnalyticsBridge.FromKernel analytics = 5;
+    BuilderBridge.FromKernel builder = 6;
+    CatalogBridge.FromKernel catalog = 7;
+    ChatAndFriendsBridge.FromKernel chat_and_friends = 8;
+    DebugBridge.FromKernel debug = 9;
+    EmotesBridge.FromKernel emotes = 10;
+    ErrorHandlingBridge.FromKernel error_handling = 11;
+    ExploreBridge.FromKernel explore = 12;
+    HudBridge.FromKernel hud = 13;
+    HudComponentsBridge.FromKernel hud_components = 14;
+    MiscBridge.FromKernel misc = 15;
+    NavigationMapBridge.FromKernel navigation_map = 16;
+    NotificationsBridge.FromKernel notifications = 17;
+    ProfileBridge.FromKernel profile = 18;
+    QuestsBridge.FromKernel quests = 19;
+    RenderStyleBridge.FromKernel render_style = 20;
+    RendererActivationBridge.FromKernel renderer_activation = 21;
+    ReportingBridge.FromKernel reporting = 22;
+    SceneLifecycleBridge.FromKernel scene_lifecycle = 23;
+    SessionBridge.FromKernel session = 24;
+    SettingsBridge.FromKernel settings = 25;
+    TeleportBridge.FromKernel teleport = 26;
+    TutorialBridge.FromKernel tutorial = 27;
+    UsersSearchBridge.FromKernel users_search = 28;
+    VoiceChatBridge.FromKernel voice_chat = 29;
+  }
+}

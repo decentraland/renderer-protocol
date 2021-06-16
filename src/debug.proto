@@ -1,0 +1,23 @@
+﻿syntax = "proto3";
+
+message DebugBridge {
+  message FromKernel {
+    oneof message {
+      SetDebug set_debug = 1;
+      SetSceneDebugPanel set_scene_debug_panel = 2;
+      ShowFPSPanel show_fps_panel = 3;
+      HideFPSPanel hide_fps_panel = 4;
+      SetEngineDebugPanel set_engine_debug_panel = 5;
+      SetDisableAssetBundles set_disable_asset_bundles = 6;
+    }
+
+    message SetDebug {}
+    message SetSceneDebugPanel {}
+    message ShowFPSPanel {}
+    message HideFPSPanel {}
+    message SetEngineDebugPanel {}
+    message SetDisableAssetBundles {}
+  }
+
+  message FromRenderer {}
+}

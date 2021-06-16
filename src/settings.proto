@@ -1,0 +1,28 @@
+﻿syntax = "proto3";
+
+message SettingsBridge {
+  message FromKernel {
+    oneof message {
+      SetTargetHeight set_target_height = 1;
+    }
+
+    message SetTargetHeight {
+      int32 height = 1;
+    }
+  }
+
+  message FromRenderer {
+    oneof message {
+      SetScenesLoadRadius set_scenes_load_radius = 1;
+      SetBaseResolution set_base_resolution = 2;
+    }
+
+    message SetScenesLoadRadius {
+      int32 newRadius = 1;
+    }
+
+    message SetBaseResolution {
+      int32 baseResolution = 1;
+    }
+  }
+}

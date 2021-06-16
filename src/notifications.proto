@@ -1,0 +1,33 @@
+﻿syntax = "proto3";
+
+message NotificationsBridge {
+  enum NotificationType {
+    NotificationType_Generic = 0;
+    NotificationType_ScriptingError = 1;
+    NotificationType_CommsError = 2;
+  }
+
+  message Notification {
+    NotificationType type = 1;
+    string message = 2;
+    string button_message = 3;
+    float timer = 4;
+    optional string scene = 5;
+    optional string external_callback_id = 6;
+  }
+
+  message FromKernel {
+    oneof message {
+      ShowNotification show_notification = 1;
+      ShowWelcomeNotification show_welcome_notification = 2;
+    }
+
+    message ShowNotification {
+      Notification notification = 1;
+    }
+
+    message ShowWelcomeNotification {}
+  }
+
+  message FromRenderer {}
+}

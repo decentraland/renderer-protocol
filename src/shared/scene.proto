@@ -1,0 +1,25 @@
+// This file contains types that won't ever change and may only be extended
+// by adding new fields
+
+syntax = "proto3";
+
+package scene;
+
+message ContentMapping {
+  string file = 1;
+  string hash = 2;
+}
+
+message ParcelPosition {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message ParcelScene {
+  string scene_id = 1;
+  string name = 2;
+  string base_url = 3;
+  scene.ParcelPosition base_position = 4;
+  repeated scene.ParcelPosition parcels = 5;
+  repeated scene.ContentMapping contents = 6;
+}

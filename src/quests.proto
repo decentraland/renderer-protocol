@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+
+import "shared/quests.proto";
+
+message QuestsBridge {
+  message FromKernel {
+    oneof message {
+      InitQuestsInfo init_quests_info = 1;
+      UpdateQuestProgress update_quest_progress = 2;
+    }
+    message InitQuestsInfo {
+      repeated quests.QuestForRenderer renderer_quests = 1;
+    }
+
+    message UpdateQuestProgress {
+      quests.QuestForRenderer renderer_quest = 1;
+    }
+  }
+
+  message FromRenderer {}
+}

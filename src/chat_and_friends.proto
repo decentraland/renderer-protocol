@@ -1,0 +1,103 @@
+﻿syntax = "proto3";
+
+import "shared/common.proto";
+
+message ChatAndFriendsBridge {
+  enum PresenceStatus {
+    PresenceStatus_NONE = 0;
+    PresenceStatus_OFFLINE = 1;
+    PresenceStatus_ONLINE = 2;
+    PresenceStatus_UNAVAILABLE = 3;
+  }
+
+  enum ChatMessageType {
+    ChatMessageType_NONE = 0;
+    ChatMessageType_PUBLIC = 1;
+    ChatMessageType_PRIVATE = 2;
+    ChatMessageType_SYSTEM = 3;
+  }
+
+  enum FriendshipAction {
+    FriendshipAction_NONE = 0;
+    FriendshipAction_APPROVED = 1;
+    FriendshipAction_REJECTED = 2;
+    FriendshipAction_CANCELED = 3;
+    FriendshipAction_REQUESTED_FROM = 4;
+    FriendshipAction_REQUESTED_TO = 5;
+    FriendshipAction_DELETED = 6;
+  }
+
+  message ChatMessage {
+    string message_id = 1;
+    ChatMessageType message_type = 2;
+    string sender = 3;
+    string recipient = 4;
+    int32 timestamp = 5;
+    string body = 6;
+  }
+
+  message FromKernel {
+    oneof message {
+      AddMessageToChatWindow add_message_to_chat_window = 1;
+      InitializeFriends initialize_friends = 2;
+      UpdateFriendshipStatus update_friendship_status = 3;
+      UpdateUserPresence update_user_presence = 4;
+      FriendNotFound friend_not_found = 5;
+    }
+
+    message AddMessageToChatWindow {
+      ChatMessage message = 1;
+    }
+
+    message InitializeFriends {
+      repeated string current_friends = 1;
+      repeated string requested_to = 2;
+      repeated string requested_from = 3;
+    }
+
+    message UpdateFriendshipStatus {
+      string user_id = 1;
+      FriendshipAction action = 2;
+    }
+
+    message UpdateUserPresence {
+      string user_id = 1;
+      string realm = 2;
+      common.Vector2 position = 3;
+      PresenceStatus presence = 4;
+    }
+
+    message FriendNotFound {
+      string query_string = 1;
+    }
+  }
+
+  message FromRenderer {
+    oneof message {
+      SendChatMessage send_chat_message = 1;
+      UpdateFriendshipStatus update_friendship_status = 2;
+    }
+
+    message SendChatMessage {
+      message ChatMessage {
+        string message_id = 1;
+        ChatMessageType message_type = 2;
+        string sender = 3;
+        string recipient = 4;
+        int32 timestamp = 5;
+        string body = 6;
+      }
+
+      ChatMessage message = 1;
+    }
+
+    message UpdateFriendshipStatus {
+      message FriendshipUpdateStatusMessage {
+        string userId = 1;
+        FriendshipAction action = 2;
+      }
+
+      FriendshipUpdateStatusMessage updateMessage = 1;
+    }
+  }
+}

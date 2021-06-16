@@ -1,0 +1,43 @@
+﻿syntax = "proto3";
+
+import "shared/common.proto";
+
+package profile;
+
+message ProfileForRenderer {
+  string user_id = 1;
+  string name = 2;
+  string description = 3;
+  string email = 4;
+  AvatarForRenderer avatar = 5;
+  ProfileSnapshot snapshots = 6;
+  int32 version = 7;
+  bool hasConnectedWeb3 = 8;
+  optional float updatedAt = 9;
+  optional float createdAt = 10;
+  optional ParcelsWithAccess parcelsWithAccess = 11;
+}
+
+message ProfileSnapshot {
+  string face = 1;
+  string body = 2;
+}
+
+message AvatarForRenderer {
+  string body_shape = 1;
+  common.Color4 skin_color = 2;
+  common.Color4 hair_color = 3;
+  common.Color4 eye_color = 4;
+  repeated string wearables = 5;
+}
+
+message ParcelsWithAccess {
+  float x = 1;
+  float y = 2;
+  LandRole role = 3;
+}
+
+enum LandRole {
+  LandRole_OWNER = 0;
+  LandRole_OPERATOR = 1;
+}

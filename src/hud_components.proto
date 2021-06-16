@@ -1,0 +1,62 @@
+﻿syntax = "proto3";
+
+message HudComponentsBridge {
+  message AvatarInfo {
+    string body_shape = 1;
+    string skin_color = 2;
+    string hair_color = 3;
+    string eye_color = 4;
+    repeated string wearables = 5;
+  }
+
+  message FromKernel {
+    oneof message {
+      ConfigureEmailPrompt configure_email_prompt = 1;
+      UpdateBalanceOfMANA update_balance_of_mana = 2;
+      ShowAvatarEditorInSignIn show_avatar_editor_sign_in = 3;
+    }
+
+    message ConfigureEmailPrompt {
+      float tutorial_step = 1;
+    }
+
+    message UpdateBalanceOfMANA {
+      string balance = 1;
+    }
+
+    message ShowAvatarEditorInSignIn {}
+  }
+
+  message FromRenderer {
+    oneof message {
+      TermsOfServiceResponse terms_of_service_response = 1;
+      MotdConfirmClicked motd_confirm_clicked = 2;
+      SaveUserAvatar save_user_avatar = 3;
+      CloseUserAvatar close_user_avatar = 4;
+      FetchBalanceOfMANA fetch_balance_of_mana = 5;
+    }
+
+    message TermsOfServiceResponse {
+      string sceneId = 1;
+      bool accepted = 2;
+      bool dontShowAgain = 3;
+    }
+
+    message MotdConfirmClicked {}
+
+    message SaveUserAvatar {
+      AvatarInfo avatar = 1;
+      bytes face = 2;
+      bytes face128 = 3;
+      bytes face256 = 4;
+      bytes body = 5;
+      bool is_sign_up_flow = 6;
+    }
+
+    message CloseUserAvatar {
+      bool is_sign_up_flow = 1;
+    }
+
+    message FetchBalanceOfMANA {}
+  }
+}
